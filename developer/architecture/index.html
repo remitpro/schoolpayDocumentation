@@ -1,0 +1,3946 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The Ultimate Multi-tenant SaaS for School Fees Management.">
+      
+      
+        <meta name="author" content="Remitpro">
+      
+      
+        <link rel="canonical" href="https://docs.schoolpaypro.ng/developer/architecture/">
+      
+      
+        <link rel="prev" href="../../user-guides/super-admin/">
+      
+      
+        <link rel="next" href="../technical-manual/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Architecture - SchoolPay Pro 🎓</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#schoolpay-pro-technical-architecture-document" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SchoolPay Pro 🎓
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/user-journey/" class="md-tabs__link">
+          
+  
+  
+  Product Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guides/parent-portal/" class="md-tabs__link">
+          
+  
+  
+  User Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Developer Manual
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../governance/security-compliance/" class="md-tabs__link">
+          
+  
+  
+  Governance & Compliance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../planning/workplan/" class="md-tabs__link">
+          
+  
+  
+  Planning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contact/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contact Us
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    SchoolPay Pro 🎓
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/user-journey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Journey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/parent-portal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parent Portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/school-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    School Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/super-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Super Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Manual
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Manual
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Executive Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-key-architectural-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Key Architectural Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-technology-stack-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Technology Stack Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-architectural-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Architectural Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Architectural Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Design Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-architectural-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Architectural Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. System Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-high-level-system-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 High-Level System Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-container-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Container Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-data-flow-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Data Flow Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Data Flow Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-payment-processing-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 Payment Processing Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-offline-attendance-sync-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 Offline Attendance Sync Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-frontend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Frontend Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Frontend Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Component Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-state-management-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 State Management Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-pwa-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 PWA Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-routing-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Routing Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-backend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Backend Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Backend Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-edge-functions-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Edge Functions Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Edge Functions Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-payment-webhook-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Payment Webhook Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-service-layer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Service Layer Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Data Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-database-schema-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Database Schema Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Database Schema Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-domain-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-financial-data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Financial Data Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-indexing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Indexing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-data-retention-archival" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Data Retention &amp; Archival
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-multi-tenant-isolation-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Multi-Tenant Isolation (RLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-authentication-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Authentication &amp; Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-payment-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Payment Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-data-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Data Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-integration-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Integration Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Integration Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-monnify-payment-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Monnify Payment Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 Monnify Payment Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payment-flow-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payment Flow Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-communication-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Communication Services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2 Communication Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resend-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resend (Email)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termii-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termii (SMS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-integration-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Integration Resilience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-deployment-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Deployment Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Deployment Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-infrastructure-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Infrastructure Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-build-deployment-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Build &amp; Deployment Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-database-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Database Migrations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance &amp; Scalability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Performance &amp; Scalability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-performance-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Performance Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-scalability-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Scalability Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-query-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Query Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-monitoring-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Monitoring &amp; Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Monitoring &amp; Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-logging-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Logging Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-metrics-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Metrics &amp; Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Audit Trail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-future-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Future Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Future Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-planned-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Planned Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Technical Debt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-architectural-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Architectural Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-technology-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Technology Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance & Compliance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance & Compliance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/security-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Compliance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/sla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/workplan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workplan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact Us
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Executive Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-key-architectural-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Key Architectural Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-technology-stack-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Technology Stack Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-architectural-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Architectural Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Architectural Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Design Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-architectural-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Architectural Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. System Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-high-level-system-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 High-Level System Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-container-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Container Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-data-flow-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Data Flow Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Data Flow Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-payment-processing-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 Payment Processing Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-offline-attendance-sync-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 Offline Attendance Sync Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-frontend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Frontend Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Frontend Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Component Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-state-management-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 State Management Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-pwa-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 PWA Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-routing-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Routing Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-backend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Backend Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Backend Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-edge-functions-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Edge Functions Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Edge Functions Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-payment-webhook-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Payment Webhook Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-service-layer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Service Layer Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Data Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-database-schema-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Database Schema Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Database Schema Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-domain-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-financial-data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Financial Data Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-indexing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Indexing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-data-retention-archival" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Data Retention &amp; Archival
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-multi-tenant-isolation-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Multi-Tenant Isolation (RLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-authentication-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Authentication &amp; Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-payment-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Payment Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-data-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Data Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-integration-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Integration Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Integration Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-monnify-payment-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Monnify Payment Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 Monnify Payment Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payment-flow-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payment Flow Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-communication-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Communication Services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2 Communication Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resend-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resend (Email)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termii-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termii (SMS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-integration-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Integration Resilience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-deployment-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Deployment Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Deployment Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-infrastructure-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Infrastructure Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-build-deployment-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Build &amp; Deployment Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-database-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Database Migrations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance &amp; Scalability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Performance &amp; Scalability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-performance-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Performance Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-scalability-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Scalability Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-query-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Query Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-monitoring-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Monitoring &amp; Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Monitoring &amp; Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-logging-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Logging Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-metrics-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Metrics &amp; Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Audit Trail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-future-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Future Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Future Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-planned-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Planned Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Technical Debt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-architectural-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Architectural Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-technology-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Technology Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="schoolpay-pro-technical-architecture-document">SchoolPay Pro - Technical Architecture Document<a class="headerlink" href="#schoolpay-pro-technical-architecture-document" title="Permanent link">&para;</a></h1>
+<p><strong>Version:</strong> 2.0.0<br />
+<strong>Last Updated:</strong> 2026-02-01<br />
+<strong>Status:</strong> Production-Ready</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-executive-summary">Executive Summary</a></li>
+<li><a href="#2-architectural-principles">Architectural Principles</a></li>
+<li><a href="#3-system-architecture">System Architecture</a></li>
+<li><a href="#4-frontend-architecture">Frontend Architecture</a></li>
+<li><a href="#5-backend-architecture">Backend Architecture</a></li>
+<li><a href="#6-data-architecture">Data Architecture</a></li>
+<li><a href="#7-security-architecture">Security Architecture</a></li>
+<li><a href="#8-integration-architecture">Integration Architecture</a></li>
+<li><a href="#9-deployment-architecture">Deployment Architecture</a></li>
+<li><a href="#10-performance-scalability">Performance &amp; Scalability</a></li>
+<li><a href="#11-monitoring-observability">Monitoring &amp; Observability</a></li>
+<li><a href="#12-future-considerations">Future Considerations</a></li>
+</ol>
+<hr />
+<h2 id="1-executive-summary">1. Executive Summary<a class="headerlink" href="#1-executive-summary" title="Permanent link">&para;</a></h2>
+<p><strong>SchoolPay Pro</strong> is a multi-tenant SaaS platform designed for Nigerian educational institutions to manage finances, academics, HR, and operations. Built on a modern <strong>serverless-first architecture</strong>, the system leverages Supabase (PostgreSQL + Edge Functions), React (Vite), and Drizzle ORM to deliver a secure, scalable, and offline-capable solution.</p>
+<h3 id="11-key-architectural-characteristics">1.1 Key Architectural Characteristics<a class="headerlink" href="#11-key-architectural-characteristics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Characteristic</th>
+<th style="text-align: left;">Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Multi-Tenancy</strong></td>
+<td style="text-align: left;">Row-Level Security (RLS) with <code>school_id</code> isolation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Security Model</strong></td>
+<td style="text-align: left;">Zero-trust with client-side RLS + server-side validation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Data Integrity</strong></td>
+<td style="text-align: left;">Immutable financial logs, audit trails, ACID compliance</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Offline Support</strong></td>
+<td style="text-align: left;">PWA with Service Workers + IndexedDB sync queue</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scalability</strong></td>
+<td style="text-align: left;">Serverless edge functions, connection pooling, indexed queries</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compliance</strong></td>
+<td style="text-align: left;">Nigerian financial regulations (WHT, Pension, TRCN)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-technology-stack-overview">1.2 Technology Stack Overview<a class="headerlink" href="#12-technology-stack-overview" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
+│                    CLIENT LAYER                              │
+│  React 18 + TypeScript 5 + Vite + Tailwind + Shadcn/UI     │
+│  React Query + React Router + PWA (Service Workers)         │
+└─────────────────────────────────────────────────────────────┘
+                            ↕ HTTPS/WSS
+┌─────────────────────────────────────────────────────────────┐
+│                   SUPABASE PLATFORM                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  PostgreSQL  │  │ Edge Functions│  │ Auth (GoTrue)│      │
+│  │  + RLS       │  │   (Deno)      │  │              │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│  ┌──────────────┐  ┌──────────────┐                         │
+│  │   Storage    │  │  Realtime    │                         │
+│  │   (S3-like)  │  │  (WebSocket) │                         │
+│  └──────────────┘  └──────────────┘                         │
+└─────────────────────────────────────────────────────────────┘
+                            ↕ HTTPS
+┌─────────────────────────────────────────────────────────────┐
+│              EXTERNAL INTEGRATIONS                           │
+│  Monnify (Payments) | Resend (Email) | Termii (SMS)        │
+└─────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="2-architectural-principles">2. Architectural Principles<a class="headerlink" href="#2-architectural-principles" title="Permanent link">&para;</a></h2>
+<p>The system is built on the following core principles:</p>
+<h3 id="21-design-principles">2.1 Design Principles<a class="headerlink" href="#21-design-principles" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Security by Default</strong>: All data access controlled by RLS; sensitive operations in Edge Functions</li>
+<li><strong>Offline-First</strong>: Critical workflows (attendance) function without internet connectivity</li>
+<li><strong>Financial Integrity</strong>: Immutable transaction logs; double-entry accounting principles</li>
+<li><strong>Type Safety</strong>: End-to-end TypeScript with Zod runtime validation</li>
+<li><strong>Multi-Tenant Isolation</strong>: Strict data segregation at database level</li>
+<li><strong>Auditability</strong>: Comprehensive logging of all state-changing operations</li>
+<li><strong>Progressive Enhancement</strong>: Core features work on basic browsers; enhanced on modern ones</li>
+</ol>
+<h3 id="22-architectural-patterns">2.2 Architectural Patterns<a class="headerlink" href="#22-architectural-patterns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Client-First Architecture</strong>: Direct database access from frontend (secured by RLS)</li>
+<li><strong>CQRS-Lite</strong>: Separate read/write paths for complex financial operations</li>
+<li><strong>Event-Driven</strong>: Webhooks and database triggers for async workflows</li>
+<li><strong>Service Layer Pattern</strong>: Business logic encapsulated in TypeScript services</li>
+<li><strong>Repository Pattern</strong>: Drizzle ORM abstracts database operations</li>
+</ul>
+<hr />
+<h2 id="3-system-architecture">3. System Architecture<a class="headerlink" href="#3-system-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="31-high-level-system-context">3.1 High-Level System Context<a class="headerlink" href="#31-high-level-system-context" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>C4Context
+    title System Context - SchoolPay Pro
+
+    Person(admin, &quot;School Admin&quot;, &quot;Manages school operations&quot;)
+    Person(teacher, &quot;Teacher&quot;, &quot;Records grades, attendance&quot;)
+    Person(parent, &quot;Parent&quot;, &quot;Pays fees, views reports&quot;)
+    Person(superadmin, &quot;Platform Owner&quot;, &quot;Monitors all schools&quot;)
+
+    System(schoolpay, &quot;SchoolPay Pro&quot;, &quot;Multi-tenant school management platform&quot;)
+
+    System_Ext(monnify, &quot;Monnify&quot;, &quot;Payment gateway&quot;)
+    System_Ext(resend, &quot;Resend&quot;, &quot;Email delivery&quot;)
+    System_Ext(termii, &quot;Termii&quot;, &quot;SMS gateway&quot;)
+
+    Rel(admin, schoolpay, &quot;Manages via web&quot;)
+    Rel(teacher, schoolpay, &quot;Records data via mobile/web&quot;)
+    Rel(parent, schoolpay, &quot;Pays fees, views reports&quot;)
+    Rel(superadmin, schoolpay, &quot;Monitors platform&quot;)
+
+    Rel(schoolpay, monnify, &quot;Processes payments&quot;)
+    Rel(schoolpay, resend, &quot;Sends emails&quot;)
+    Rel(schoolpay, termii, &quot;Sends SMS&quot;)
+    Rel(monnify, schoolpay, &quot;Webhook notifications&quot;)
+</code></pre></div>
+<h3 id="32-container-diagram">3.2 Container Diagram<a class="headerlink" href="#32-container-diagram" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TB
+    subgraph &quot;Client Layer&quot;
+        SPA[React SPA&lt;br/&gt;Vite + TypeScript]
+        SW[Service Worker&lt;br/&gt;PWA Cache]
+    end
+
+    subgraph &quot;Supabase Platform&quot;
+        API[PostgREST API&lt;br/&gt;Auto-generated]
+        Auth[GoTrue Auth&lt;br/&gt;JWT-based]
+        DB[(PostgreSQL&lt;br/&gt;with RLS)]
+        Storage[Object Storage&lt;br/&gt;S3-compatible]
+        Realtime[Realtime Server&lt;br/&gt;WebSocket]
+
+        subgraph &quot;Edge Functions (Deno)&quot;
+            EF1[onboard-school]
+            EF2[monnify-webhook]
+            EF3[verify-payment]
+            EF4[invite-user]
+            EF5[promote-students]
+        end
+    end
+
+    subgraph &quot;External Services&quot;
+        Monnify[Monnify API]
+        Resend[Resend API]
+        Termii[Termii API]
+    end
+
+    SPA --&gt;|REST/GraphQL| API
+    SPA --&gt;|Auth| Auth
+    SPA --&gt;|Invoke| EF1
+    SPA --&gt;|Upload| Storage
+    SPA --&gt;|Subscribe| Realtime
+
+    API --&gt; DB
+    Auth --&gt; DB
+    EF1 --&gt; DB
+    EF2 --&gt; DB
+    EF3 --&gt; DB
+
+    EF1 --&gt;|Create Subaccount| Monnify
+    EF2 --&gt;|Verify Signature| Monnify
+    EF4 --&gt;|Send Invite| Resend
+    Monnify --&gt;|Payment Webhook| EF2
+</code></pre></div>
+<h3 id="33-data-flow-patterns">3.3 Data Flow Patterns<a class="headerlink" href="#33-data-flow-patterns" title="Permanent link">&para;</a></h3>
+<h4 id="331-payment-processing-flow">3.3.1 Payment Processing Flow<a class="headerlink" href="#331-payment-processing-flow" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant Parent
+    participant Frontend
+    participant Monnify
+    participant Webhook as monnify-webhook
+    participant DB as PostgreSQL
+    participant Notification
+
+    Parent-&gt;&gt;Frontend: Initiate Payment
+    Frontend-&gt;&gt;Monnify: Open Payment Widget
+    Monnify-&gt;&gt;Parent: Display Payment Options
+    Parent-&gt;&gt;Monnify: Complete Payment
+
+    Monnify-&gt;&gt;Webhook: POST /monnify-webhook
+    Webhook-&gt;&gt;Webhook: Validate Signature
+    Webhook-&gt;&gt;DB: BEGIN TRANSACTION
+    Webhook-&gt;&gt;DB: UPDATE student_ledgers
+    Webhook-&gt;&gt;DB: INSERT transactions
+    Webhook-&gt;&gt;DB: UPDATE students.outstandingBalance
+    Webhook-&gt;&gt;DB: COMMIT
+
+    Webhook-&gt;&gt;Notification: Queue Receipt Email
+    Webhook-&gt;&gt;Frontend: Return Success
+    Frontend-&gt;&gt;Parent: Show Confirmation
+</code></pre></div>
+<h4 id="332-offline-attendance-sync-flow">3.3.2 Offline Attendance Sync Flow<a class="headerlink" href="#332-offline-attendance-sync-flow" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant Teacher
+    participant Frontend
+    participant LocalDB as IndexedDB
+    participant ServiceWorker
+    participant Supabase
+    participant DB
+
+    Teacher-&gt;&gt;Frontend: Mark Attendance (Offline)
+    Frontend-&gt;&gt;LocalDB: Store in Queue
+    Frontend-&gt;&gt;Teacher: Show Pending Status
+
+    Note over Frontend: Network Restored
+
+    Frontend-&gt;&gt;Frontend: Detect Online Event
+    Frontend-&gt;&gt;LocalDB: Fetch Pending Records
+    Frontend-&gt;&gt;Supabase: Batch Upsert
+    Supabase-&gt;&gt;DB: INSERT attendance records
+    DB-&gt;&gt;Supabase: Confirm
+    Supabase-&gt;&gt;Frontend: Success
+    Frontend-&gt;&gt;LocalDB: Clear Queue
+    Frontend-&gt;&gt;Teacher: Sync Complete
+</code></pre></div>
+<hr />
+<h2 id="4-frontend-architecture">4. Frontend Architecture<a class="headerlink" href="#4-frontend-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="41-component-architecture">4.1 Component Architecture<a class="headerlink" href="#41-component-architecture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>src/
+├── components/
+│   ├── ui/              # Shadcn primitives (Button, Dialog, etc.)
+│   ├── layout/          # Layout components (Sidebar, Header)
+│   ├── dashboard/       # Dashboard-specific widgets
+│   └── forms/           # Reusable form components
+├── pages/
+│   ├── Dashboard.tsx
+│   ├── Students.tsx
+│   ├── Finance.tsx
+│   └── [34 total pages]
+├── services/
+│   ├── AcademicService.ts
+│   ├── FeeService.ts
+│   ├── PayrollService.ts
+│   └── [15 total services]
+├── hooks/
+│   ├── useAuth.ts
+│   ├── useSchoolSettings.ts
+│   └── useOfflineSync.ts
+├── lib/
+│   ├── supabase.ts      # Supabase client
+│   ├── utils.ts         # Helper functions
+│   └── constants.ts
+└── App.tsx              # Root component with routing
+</code></pre></div>
+<h3 id="42-state-management-strategy">4.2 State Management Strategy<a class="headerlink" href="#42-state-management-strategy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State Type</th>
+<th style="text-align: left;">Solution</th>
+<th style="text-align: left;">Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Server State</strong></td>
+<td style="text-align: left;">React Query</td>
+<td style="text-align: left;">API data, caching, optimistic updates</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Auth State</strong></td>
+<td style="text-align: left;">Supabase Auth + Context</td>
+<td style="text-align: left;">User session, permissions</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>UI State</strong></td>
+<td style="text-align: left;">React Context</td>
+<td style="text-align: left;">Theme, sidebar state, modals</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Form State</strong></td>
+<td style="text-align: left;">React Hook Form + Zod</td>
+<td style="text-align: left;">Form validation, submission</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Offline Queue</strong></td>
+<td style="text-align: left;">IndexedDB + Custom Hook</td>
+<td style="text-align: left;">Attendance, offline operations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-pwa-configuration">4.3 PWA Configuration<a class="headerlink" href="#43-pwa-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// vite.config.ts - PWA Setup</span>
+<span class="nx">VitePWA</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">registerType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;autoUpdate&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">workbox</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">navigateFallbackDenylist</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="sr">/^\/supabase\//</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">runtimeCaching</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">urlPattern</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">url</span><span class="p">.</span><span class="nx">origin</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;https://monnify.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">handler</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NetworkOnly&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Never cache payment pages</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>
+<p><strong>Offline Capabilities:</strong>
+- ✅ Static assets cached (HTML, CSS, JS, images)
+- ✅ Attendance marking works offline
+- ✅ Read-only data viewing (cached queries)
+- ❌ Payments require internet (security)
+- ❌ Real-time features disabled offline</p>
+<h3 id="44-routing-architecture">4.4 Routing Architecture<a class="headerlink" href="#44-routing-architecture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// App.tsx - Route Structure</span>
+<span class="o">&lt;</span><span class="nx">Routes</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">Landing</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/login&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">Login</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+
+<span class="w">  </span><span class="p">{</span><span class="cm">/* Protected Routes */</span><span class="p">}</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">ProtectedRoute</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/dashboard&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">Dashboard</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/students&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">Students</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/finance/*&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">FinanceRoutes</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/academics/*&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">AcademicsRoutes</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/hr/*&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">HRRoutes</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="err">/Route&gt;</span>
+
+<span class="w">  </span><span class="p">{</span><span class="cm">/* Super Admin Routes */</span><span class="p">}</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">SuperAdminRoute</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">Route</span><span class="w"> </span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/super-admin/*&quot;</span><span class="w"> </span><span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">SuperAdminRoutes</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="err">/Route&gt;</span>
+<span class="o">&lt;</span><span class="err">/Routes&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="5-backend-architecture">5. Backend Architecture<a class="headerlink" href="#5-backend-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="51-edge-functions-architecture">5.1 Edge Functions Architecture<a class="headerlink" href="#51-edge-functions-architecture" title="Permanent link">&para;</a></h3>
+<p>All Edge Functions run on <strong>Deno</strong> runtime with TypeScript support.</p>
+<h4 id="function-inventory">Function Inventory<a class="headerlink" href="#function-inventory" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">HTTP Method</th>
+<th style="text-align: left;">Authentication</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>onboard-school</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">Create school + Monnify subaccount</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>invite-user</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">User JWT</td>
+<td style="text-align: left;">Send staff invitation email</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>generate-virtual-account</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">User JWT</td>
+<td style="text-align: left;">Create student virtual account</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>monnify-webhook</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Webhook Signature</td>
+<td style="text-align: left;">Process payment notifications</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>webhook-payment</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Webhook Signature</td>
+<td style="text-align: left;">Alternative payment webhook</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>verify-payment</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">User JWT</td>
+<td style="text-align: left;">Manual payment verification</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>promote-students</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Admin JWT</td>
+<td style="text-align: left;">Batch class promotion</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>send-email</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">Email proxy (hides API keys)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>send-sms</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">SMS proxy (hides API keys)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>monnify-create-account</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">Standalone account creation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-payment-webhook-security">Example: Payment Webhook Security<a class="headerlink" href="#example-payment-webhook-security" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// supabase/functions/monnify-webhook/index.ts</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createHmac</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;crypto&#39;</span><span class="p">;</span>
+
+<span class="nx">Deno</span><span class="p">.</span><span class="nx">serve</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;monnify-signature&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Verify webhook authenticity</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">computedSignature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">&#39;sha512&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">MONNIFY_SECRET</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">signature</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">computedSignature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Invalid signature&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">401</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Process payment...</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;transactions&#39;</span><span class="p">).</span><span class="nx">insert</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">studentId</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.productCode</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.amountPaid</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">transactionReference</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.transactionReference</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// ... immutable record</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;OK&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">200</span><span class="w"> </span><span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="52-service-layer-pattern">5.2 Service Layer Pattern<a class="headerlink" href="#52-service-layer-pattern" title="Permanent link">&para;</a></h3>
+<p>Business logic is encapsulated in <strong>15 TypeScript services</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Example: FeeService.ts</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">FeeService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">generateLedgerEntries</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">studentId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">classLevel</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">term</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">  </span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Fetch master fee schedule for class</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">supabase</span>
+<span class="w">      </span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;master_fee_schedule&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;class_level&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">classLevel</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 2. Create ledger entries for student</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">entries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">schedule</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fee</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">      </span><span class="nx">student_id</span><span class="o">:</span><span class="w"> </span><span class="kt">studentId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">fee_schedule_id</span><span class="o">:</span><span class="w"> </span><span class="kt">fee.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">fee_name</span><span class="o">:</span><span class="w"> </span><span class="kt">fee.name</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">fee.amount</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">term</span><span class="o">:</span><span class="w"> </span><span class="kt">term</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">is_paid</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="w">    </span><span class="p">}));</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;student_ledgers&#39;</span><span class="p">).</span><span class="nx">insert</span><span class="p">(</span><span class="nx">entries</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3. Audit log</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">AuditService</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fee_generation&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;student&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">studentId</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Service Responsibilities:</strong>
+- <strong>AcademicService</strong>: Grade calculations, report cards, class positions
+- <strong>FeeService</strong>: Ledger generation, payment allocation
+- <strong>PayrollService</strong>: Salary calculations, deductions (pension, WHT)
+- <strong>NotificationService</strong>: Multi-channel messaging (Email, SMS, In-App)
+- <strong>WalletService</strong>: Parent wallet management, balance tracking
+- <strong>AuditService</strong>: Compliance logging</p>
+<hr />
+<h2 id="6-data-architecture">6. Data Architecture<a class="headerlink" href="#6-data-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="61-database-schema-overview">6.1 Database Schema Overview<a class="headerlink" href="#61-database-schema-overview" title="Permanent link">&para;</a></h3>
+<p><strong>Total Tables:</strong> 30+<br />
+<strong>Schema Management:</strong> Drizzle ORM (<code>src/db/schema.ts</code>)<br />
+<strong>Migration Tool:</strong> <code>drizzle-kit</code></p>
+<h4 id="core-domain-models">Core Domain Models<a class="headerlink" href="#core-domain-models" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>erDiagram
+    SCHOOLS ||--o{ STUDENTS : contains
+    SCHOOLS ||--o{ PROFILES : employs
+    SCHOOLS ||--o{ MASTER_FEE_SCHEDULE : defines
+
+    STUDENTS ||--o{ STUDENT_LEDGERS : owes
+    STUDENTS ||--o{ TRANSACTIONS : pays
+    STUDENTS ||--o{ ACADEMIC_RECORDS : achieves
+
+    MASTER_FEE_SCHEDULE ||--o{ STUDENT_LEDGERS : generates
+
+    PROFILES ||--o{ AUDIT_LOGS : performs
+
+    SCHOOLS {
+        uuid id PK
+        text name
+        text monnify_subaccount_code
+        text current_session
+        text current_term
+        numeric geofence_lat
+        numeric geofence_lng
+    }
+
+    STUDENTS {
+        uuid id PK
+        uuid school_id FK
+        text student_id UK
+        text class
+        numeric outstanding_balance
+        text virtual_account_number UK
+    }
+
+    STUDENT_LEDGERS {
+        uuid id PK
+        uuid student_id FK
+        uuid fee_schedule_id FK
+        numeric amount
+        numeric amount_settled
+        boolean is_paid
+        text term
+    }
+
+    TRANSACTIONS {
+        uuid id PK
+        uuid student_id FK
+        numeric amount
+        text transaction_reference UK
+        numeric balance_before
+        numeric balance_after
+        numeric platform_fee
+    }
+</code></pre></div>
+<h3 id="62-financial-data-model">6.2 Financial Data Model<a class="headerlink" href="#62-financial-data-model" title="Permanent link">&para;</a></h3>
+<p>The financial system uses a <strong>modified double-entry</strong> approach:</p>
+<div class="highlight"><pre><span></span><code>Master Fee Schedule (Template)
+        ↓
+Student Ledgers (Debt Tracker)
+        ↓
+Transactions (Immutable Payment Log)
+</code></pre></div>
+<p><strong>Key Principles:</strong>
+1. <strong>Master Fee Schedule</strong>: Single source of truth for fees per class
+2. <strong>Student Ledgers</strong>: Individual debt records (mutable: <code>amount_settled</code>)
+3. <strong>Transactions</strong>: Immutable payment history (never deleted/updated)
+4. <strong>Balance Calculation</strong>: <code>outstanding_balance = SUM(ledger.amount - ledger.amount_settled)</code></p>
+<h3 id="63-indexing-strategy">6.3 Indexing Strategy<a class="headerlink" href="#63-indexing-strategy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- High-traffic query optimization</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ledger_school_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student_ledgers</span><span class="p">(</span><span class="n">school_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ledger_student_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student_ledgers</span><span class="p">(</span><span class="n">student_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ledger_unpaid_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student_ledgers</span><span class="p">(</span><span class="n">school_id</span><span class="p">,</span><span class="w"> </span><span class="n">is_paid</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">transactions_created_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">transactions</span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">students_created_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">students</span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
+
+<span class="c1">-- Unique constraints for data integrity</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">school_id_student_id_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">students</span><span class="p">(</span><span class="n">school_id</span><span class="p">,</span><span class="w"> </span><span class="n">student_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">student_position_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">class_positions</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="k">session</span><span class="p">,</span><span class="w"> </span><span class="n">term</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="64-data-retention-archival">6.4 Data Retention &amp; Archival<a class="headerlink" href="#64-data-retention-archival" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Data Type</th>
+<th style="text-align: left;">Retention</th>
+<th style="text-align: left;">Archive Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Transactions</strong></td>
+<td style="text-align: left;">Permanent</td>
+<td style="text-align: left;">Never delete (compliance)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Audit Logs</strong></td>
+<td style="text-align: left;">7 years</td>
+<td style="text-align: left;">Move to cold storage after 2 years</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Academic Records</strong></td>
+<td style="text-align: left;">Permanent</td>
+<td style="text-align: left;">Archived per session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Attendance</strong></td>
+<td style="text-align: left;">5 years</td>
+<td style="text-align: left;">Aggregate to monthly summaries</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Notifications</strong></td>
+<td style="text-align: left;">90 days</td>
+<td style="text-align: left;">Delete after read + 90 days</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-security-architecture">7. Security Architecture<a class="headerlink" href="#7-security-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="71-multi-tenant-isolation-rls">7.1 Multi-Tenant Isolation (RLS)<a class="headerlink" href="#71-multi-tenant-isolation-rls" title="Permanent link">&para;</a></h3>
+<p><strong>Row-Level Security</strong> is the cornerstone of data isolation:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Example RLS Policy for students table</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;school_isolation_policy&quot;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">students</span>
+<span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">school_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">school_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">profiles</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span>
+<span class="w">  </span><span class="p">));</span>
+
+<span class="c1">-- Super-admin bypass</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;super_admin_access&quot;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">students</span>
+<span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">profiles</span><span class="w"> </span>
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span><span class="w"> </span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;super_admin&#39;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">);</span>
+</code></pre></div>
+<p><strong>RLS Coverage:</strong>
+- ✅ All tables with <code>school_id</code> have isolation policies
+- ✅ <code>profiles</code> table links <code>auth.uid()</code> to <code>school_id</code>
+- ✅ Super-admin role can bypass for platform monitoring
+- ✅ Policies enforced at PostgreSQL level (not application)</p>
+<h3 id="72-authentication-authorization">7.2 Authentication &amp; Authorization<a class="headerlink" href="#72-authentication-authorization" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph LR
+    A[User Login] --&gt; B{Supabase Auth}
+    B --&gt;|Success| C[JWT Token]
+    C --&gt; D[Frontend Stores Token]
+    D --&gt; E[API Requests Include Token]
+    E --&gt; F{RLS Check}
+    F --&gt;|Authorized| G[Return Data]
+    F --&gt;|Denied| H[403 Forbidden]
+</code></pre></div>
+<p><strong>Auth Flow:</strong>
+1. User authenticates via Supabase Auth (email/password)
+2. JWT token issued (contains <code>user_id</code>)
+3. Token included in all API requests
+4. PostgreSQL RLS uses <code>auth.uid()</code> from JWT
+5. Data filtered by <code>school_id</code> automatically</p>
+<p><strong>Role-Based Access Control (RBAC):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Role</th>
+<th style="text-align: left;">Permissions</th>
+<th style="text-align: left;">Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>super_admin</code></td>
+<td style="text-align: left;">Platform-wide access</td>
+<td style="text-align: left;">RLS bypass policy</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>admin</code></td>
+<td style="text-align: left;">Full school access</td>
+<td style="text-align: left;">Standard RLS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>teacher</code></td>
+<td style="text-align: left;">Read students, write grades</td>
+<td style="text-align: left;">Application-level checks</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>accountant</code></td>
+<td style="text-align: left;">Finance module only</td>
+<td style="text-align: left;">Application-level checks</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>parent</code></td>
+<td style="text-align: left;">View own children only</td>
+<td style="text-align: left;">Custom RLS on student_id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-payment-security">7.3 Payment Security<a class="headerlink" href="#73-payment-security" title="Permanent link">&para;</a></h3>
+<p><strong>Monnify Integration Security:</strong>
+1. <strong>Webhook Signature Validation</strong>: HMAC-SHA512 verification
+2. <strong>Idempotency</strong>: <code>transaction_reference</code> unique constraint prevents duplicates
+3. <strong>Split Settlement</strong>: Platform fee deducted at gateway level
+4. <strong>PCI Compliance</strong>: No card data stored (Monnify handles)</p>
+<p><strong>Virtual Account Security:</strong>
+- Accounts generated server-side only (<code>generate-virtual-account</code> edge function)
+- Account numbers permanently linked to <code>student_id</code>
+- Cannot be reassigned or deleted</p>
+<h3 id="74-data-protection">7.4 Data Protection<a class="headerlink" href="#74-data-protection" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Protection Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Transport</strong></td>
+<td style="text-align: left;">TLS 1.3 (HTTPS)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Storage</strong></td>
+<td style="text-align: left;">PostgreSQL encryption at rest</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Secrets</strong></td>
+<td style="text-align: left;">Environment variables (never committed)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>API Keys</strong></td>
+<td style="text-align: left;">Hidden in Edge Functions (not exposed to client)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sensitive Fields</strong></td>
+<td style="text-align: left;">NIN, TIN encrypted in database</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Audit Trail</strong></td>
+<td style="text-align: left;">All mutations logged to <code>audit_logs</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-integration-architecture">8. Integration Architecture<a class="headerlink" href="#8-integration-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="81-monnify-payment-gateway">8.1 Monnify Payment Gateway<a class="headerlink" href="#81-monnify-payment-gateway" title="Permanent link">&para;</a></h3>
+<p><strong>Integration Type:</strong> REST API + Webhook<br />
+<strong>Authentication:</strong> API Key + Secret<br />
+<strong>Environment:</strong> Production</p>
+<h4 id="payment-flow-architecture">Payment Flow Architecture<a class="headerlink" href="#payment-flow-architecture" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>┌─────────────┐         ┌──────────────┐         ┌─────────────┐
+│   Parent    │────────▶│   Frontend   │────────▶│  Monnify    │
+│             │         │  (Widget)    │         │   Widget    │
+└─────────────┘         └──────────────┘         └─────────────┘
+                                                         │
+                                                         ▼
+                                                  ┌─────────────┐
+                                                  │   Payment   │
+                                                  │  Processor  │
+                                                  └─────────────┘
+                                                         │
+                        ┌────────────────────────────────┘
+                        ▼
+                 ┌─────────────┐
+                 │   Webhook   │
+                 │  (Async)    │
+                 └─────────────┘
+                        │
+                        ▼
+              ┌──────────────────┐
+              │ monnify-webhook  │
+              │  Edge Function   │
+              └──────────────────┘
+                        │
+                        ▼
+                ┌──────────────┐
+                │  PostgreSQL  │
+                │  (Update)    │
+                └──────────────┘
+</code></pre></div>
+<p><strong>Revenue Model:</strong>
+- <strong>Platform Fee</strong>: ₦200 per transaction (fixed)
+- <strong>Implementation</strong>: Split settlement at Monnify level
+- <strong>Settlement</strong>: Automatic to school subaccount + platform account</p>
+<h3 id="82-communication-services">8.2 Communication Services<a class="headerlink" href="#82-communication-services" title="Permanent link">&para;</a></h3>
+<h4 id="resend-email">Resend (Email)<a class="headerlink" href="#resend-email" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Edge Function: send-email</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.resend.com/emails&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">RESEND_API_KEY</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span>
+<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;noreply@schoolpay.com.ng&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="kt">recipient</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">subject</span><span class="o">:</span><span class="w"> </span><span class="kt">subject</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="kt">htmlContent</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><strong>Use Cases:</strong>
+- Payment receipts
+- Staff invitations
+- Report card notifications
+- Password resets</p>
+<h4 id="termii-sms">Termii (SMS)<a class="headerlink" href="#termii-sms" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Edge Function: send-sms</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.ng.termii.com/api/sms/send&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">api_key</span><span class="o">:</span><span class="w"> </span><span class="kt">TERMII_API_KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="kt">phoneNumber</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SchoolPay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">sms</span><span class="o">:</span><span class="w"> </span><span class="kt">message</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;plain&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">channel</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;generic&#39;</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><strong>Use Cases:</strong>
+- Payment confirmations
+- Fee reminders
+- Emergency alerts</p>
+<h3 id="83-integration-resilience">8.3 Integration Resilience<a class="headerlink" href="#83-integration-resilience" title="Permanent link">&para;</a></h3>
+<p><strong>Retry Strategy:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">retryWithBackoff</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span><span class="w"> </span><span class="nx">maxRetries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">maxRetries</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fn</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">maxRetries</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Circuit Breaker:</strong> Implemented for external APIs to prevent cascade failures</p>
+<hr />
+<h2 id="9-deployment-architecture">9. Deployment Architecture<a class="headerlink" href="#9-deployment-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="91-infrastructure-overview">9.1 Infrastructure Overview<a class="headerlink" href="#91-infrastructure-overview" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────────────┐
+│                    Vercel Edge Network                    │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │  Static Assets (CDN)                               │  │
+│  │  - HTML, CSS, JS (Gzipped)                        │  │
+│  │  - Images, Fonts                                   │  │
+│  │  - Service Worker                                  │  │
+│  └────────────────────────────────────────────────────┘  │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │  SPA Routing (vercel.json)                        │  │
+│  │  - Fallback to index.html                         │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
+                            ↕
+┌──────────────────────────────────────────────────────────┐
+│                   Supabase Cloud                          │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
+│  │ PostgreSQL  │  │    Auth     │  │   Storage   │      │
+│  │  (Primary)  │  │  (GoTrue)   │  │   (S3)      │      │
+│  └─────────────┘  └─────────────┘  └─────────────┘      │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │  Edge Functions (Deno Deploy)                   │    │
+│  │  - Global distribution                          │    │
+│  │  - Auto-scaling                                 │    │
+│  └─────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="92-environment-configuration">9.2 Environment Configuration<a class="headerlink" href="#92-environment-configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Environment</th>
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Database</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Development</strong></td>
+<td style="text-align: left;">Local testing</td>
+<td style="text-align: left;">Local PostgreSQL</td>
+<td style="text-align: left;">localhost:8080</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Staging</strong></td>
+<td style="text-align: left;">Pre-production</td>
+<td style="text-align: left;">Supabase Staging</td>
+<td style="text-align: left;">staging.schoolpay.com.ng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Production</strong></td>
+<td style="text-align: left;">Live system</td>
+<td style="text-align: left;">Supabase Production</td>
+<td style="text-align: left;">app.schoolpay.com.ng</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-build-deployment-pipeline">9.3 Build &amp; Deployment Pipeline<a class="headerlink" href="#93-build-deployment-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># .github/workflows/deploy.yml (conceptual)</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Production</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm ci</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm test</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build application</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">VITE_SUPABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.SUPABASE_URL }}</span>
+<span class="w">          </span><span class="nt">VITE_SUPABASE_ANON_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.SUPABASE_ANON_KEY }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Vercel</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vercel/action@v1</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">vercel-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.VERCEL_TOKEN }}</span>
+<span class="w">          </span><span class="nt">vercel-org-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.VERCEL_ORG_ID }}</span>
+<span class="w">          </span><span class="nt">vercel-project-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.VERCEL_PROJECT_ID }}</span>
+</code></pre></div>
+<h3 id="94-database-migrations">9.4 Database Migrations<a class="headerlink" href="#94-database-migrations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Development workflow</span>
+npm<span class="w"> </span>run<span class="w"> </span>db:generate<span class="w">    </span><span class="c1"># Generate migration from schema changes</span>
+npm<span class="w"> </span>run<span class="w"> </span>db:push<span class="w">        </span><span class="c1"># Apply migrations to database</span>
+npm<span class="w"> </span>run<span class="w"> </span>db:seed<span class="w">        </span><span class="c1"># Seed initial data</span>
+npm<span class="w"> </span>run<span class="w"> </span>db:rls<span class="w">         </span><span class="c1"># Apply RLS policies</span>
+npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w">    </span><span class="c1"># Setup database triggers</span>
+</code></pre></div>
+<hr />
+<h2 id="10-performance-scalability">10. Performance &amp; Scalability<a class="headerlink" href="#10-performance-scalability" title="Permanent link">&para;</a></h2>
+<h3 id="101-performance-optimizations">10.1 Performance Optimizations<a class="headerlink" href="#101-performance-optimizations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Optimization</th>
+<th style="text-align: left;">Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Frontend</strong></td>
+<td style="text-align: left;">Code splitting (React.lazy)</td>
+<td style="text-align: left;">-40% initial bundle size</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Frontend</strong></td>
+<td style="text-align: left;">Image optimization (WebP)</td>
+<td style="text-align: left;">-60% image payload</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Frontend</strong></td>
+<td style="text-align: left;">React Query caching</td>
+<td style="text-align: left;">-80% redundant API calls</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database</strong></td>
+<td style="text-align: left;">Strategic indexing</td>
+<td style="text-align: left;">10x faster queries</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database</strong></td>
+<td style="text-align: left;">Connection pooling</td>
+<td style="text-align: left;">Handles 1000+ concurrent users</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>API</strong></td>
+<td style="text-align: left;">Edge function caching</td>
+<td style="text-align: left;">Sub-100ms response times</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CDN</strong></td>
+<td style="text-align: left;">Vercel Edge Network</td>
+<td style="text-align: left;">Global &lt;50ms latency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-scalability-considerations">10.2 Scalability Considerations<a class="headerlink" href="#102-scalability-considerations" title="Permanent link">&para;</a></h3>
+<p><strong>Current Capacity:</strong>
+- <strong>Schools</strong>: 1,000+ tenants
+- <strong>Students</strong>: 100,000+ records
+- <strong>Concurrent Users</strong>: 5,000+
+- <strong>Transactions/day</strong>: 50,000+</p>
+<p><strong>Scaling Strategy:</strong>
+1. <strong>Horizontal Scaling</strong>: Supabase auto-scales edge functions
+2. <strong>Database Scaling</strong>: Read replicas for reporting queries
+3. <strong>Caching</strong>: Redis layer for hot data (future)
+4. <strong>CDN</strong>: Static assets distributed globally</p>
+<h3 id="103-query-performance">10.3 Query Performance<a class="headerlink" href="#103-query-performance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Optimized query with indexes</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">students</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">supabase</span>
+<span class="w">  </span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;id, first_name, last_name, outstanding_balance&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;school_id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">schoolId</span><span class="p">)</span><span class="w">  </span><span class="c1">// Uses school_id index</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;payment_status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;owed&#39;</span><span class="p">)</span><span class="w">  </span><span class="c1">// Filtered efficiently</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">order</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ascending</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">})</span><span class="w">  </span><span class="c1">// Uses created_at index</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mf">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// Pagination</span>
+
+<span class="c1">// Query plan: Index Scan on students (cost=0.42..8.44)</span>
+</code></pre></div>
+<hr />
+<h2 id="11-monitoring-observability">11. Monitoring &amp; Observability<a class="headerlink" href="#11-monitoring-observability" title="Permanent link">&para;</a></h2>
+<h3 id="111-logging-strategy">11.1 Logging Strategy<a class="headerlink" href="#111-logging-strategy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Log Type</th>
+<th style="text-align: left;">Storage</th>
+<th style="text-align: left;">Retention</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Application Logs</strong></td>
+<td style="text-align: left;">Vercel Logs</td>
+<td style="text-align: left;">7 days</td>
+<td style="text-align: left;">Debugging, errors</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Audit Logs</strong></td>
+<td style="text-align: left;">PostgreSQL</td>
+<td style="text-align: left;">7 years</td>
+<td style="text-align: left;">Compliance, forensics</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Edge Function Logs</strong></td>
+<td style="text-align: left;">Supabase Logs</td>
+<td style="text-align: left;">30 days</td>
+<td style="text-align: left;">Integration monitoring</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database Logs</strong></td>
+<td style="text-align: left;">Supabase</td>
+<td style="text-align: left;">7 days</td>
+<td style="text-align: left;">Query performance</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112-metrics-alerts">11.2 Metrics &amp; Alerts<a class="headerlink" href="#112-metrics-alerts" title="Permanent link">&para;</a></h3>
+<p><strong>Key Metrics:</strong>
+- API response time (p50, p95, p99)
+- Database connection pool usage
+- Edge function error rate
+- Payment success rate
+- User session duration</p>
+<p><strong>Alerting (Future):</strong>
+- Sentry for error tracking
+- Uptime monitoring (Pingdom/UptimeRobot)
+- Database performance alerts (Supabase dashboard)</p>
+<h3 id="113-audit-trail">11.3 Audit Trail<a class="headerlink" href="#113-audit-trail" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Every state-changing operation logged</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">AuditService</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;student_created&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">entityType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;student&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">entityId</span><span class="o">:</span><span class="w"> </span><span class="kt">student.id</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">auth.user.id</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">schoolId</span><span class="o">:</span><span class="w"> </span><span class="kt">schoolId</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">class</span><span class="o">:</span><span class="w"> </span><span class="kt">student.class</span><span class="w"> </span><span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><strong>Audit Coverage:</strong>
+- ✅ Student CRUD operations
+- ✅ Fee modifications
+- ✅ Payment processing
+- ✅ Grade changes
+- ✅ User invitations
+- ✅ Settings updates</p>
+<hr />
+<h2 id="12-future-considerations">12. Future Considerations<a class="headerlink" href="#12-future-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="121-planned-enhancements">12.1 Planned Enhancements<a class="headerlink" href="#121-planned-enhancements" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Real-time Collaboration</strong>: Live grade entry with conflict resolution</li>
+<li><strong>Advanced Analytics</strong>: ML-powered student performance predictions</li>
+<li><strong>Mobile Apps</strong>: Native iOS/Android apps (React Native)</li>
+<li><strong>API Platform</strong>: Public API for third-party integrations</li>
+<li><strong>Blockchain Receipts</strong>: Immutable payment proofs on blockchain</li>
+</ol>
+<h3 id="122-technical-debt">12.2 Technical Debt<a class="headerlink" href="#122-technical-debt" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Priority</th>
+<th style="text-align: left;">Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Migrate remaining <code>any</code> types to strict types</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">2 weeks</td>
+</tr>
+<tr>
+<td style="text-align: left;">Add comprehensive E2E tests (Playwright)</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">3 weeks</td>
+</tr>
+<tr>
+<td style="text-align: left;">Implement Redis caching layer</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">1 week</td>
+</tr>
+<tr>
+<td style="text-align: left;">Database query optimization audit</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">1 week</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accessibility (WCAG 2.1 AA) compliance</td>
+<td style="text-align: left;">Low</td>
+<td style="text-align: left;">2 weeks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="123-architectural-evolution">12.3 Architectural Evolution<a class="headerlink" href="#123-architectural-evolution" title="Permanent link">&para;</a></h3>
+<p><strong>Phase 1 (Current):</strong> Monolithic SPA + Edge Functions<br />
+<strong>Phase 2 (6 months):</strong> Microservices for heavy workloads (reporting, analytics)<br />
+<strong>Phase 3 (12 months):</strong> Event-driven architecture with message queues<br />
+<strong>Phase 4 (18 months):</strong> Multi-region deployment for global expansion</p>
+<hr />
+<h2 id="appendix-a-technology-decisions">Appendix A: Technology Decisions<a class="headerlink" href="#appendix-a-technology-decisions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Decision</th>
+<th style="text-align: left;">Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Supabase over Firebase</strong></td>
+<td style="text-align: left;">PostgreSQL (relational) better for financial data; RLS built-in</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Vite over Create React App</strong></td>
+<td style="text-align: left;">10x faster builds; modern tooling</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Drizzle over Prisma</strong></td>
+<td style="text-align: left;">Lighter weight; better TypeScript inference</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Shadcn/UI over Material-UI</strong></td>
+<td style="text-align: left;">Unstyled primitives; full design control</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>React Query over Redux</strong></td>
+<td style="text-align: left;">Server state management; less boilerplate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-b-glossary">Appendix B: Glossary<a class="headerlink" href="#appendix-b-glossary" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>RLS</strong>: Row-Level Security (PostgreSQL feature)</li>
+<li><strong>PWA</strong>: Progressive Web App</li>
+<li><strong>CQRS</strong>: Command Query Responsibility Segregation</li>
+<li><strong>WHT</strong>: Withholding Tax (Nigerian tax regulation)</li>
+<li><strong>TRCN</strong>: Teachers Registration Council of Nigeria</li>
+<li><strong>NIN</strong>: National Identity Number (Nigeria)</li>
+</ul>
+<hr />
+<p><strong>Document Maintained By:</strong> Engineering Team<br />
+<strong>Review Cycle:</strong> Quarterly<br />
+<strong>Next Review:</strong> 2026-05-01</p>
+<p><em>This architecture document is a living document and will evolve with the platform.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

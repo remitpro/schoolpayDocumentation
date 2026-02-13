@@ -1081,6 +1081,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#7-type-safety-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ 7. Type Safety &amp; Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ 7. Type Safety &amp; Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-specific-typing-over-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Specific Typing over any
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-robust-error-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Robust Error Boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1701,6 +1740,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#7-type-safety-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ 7. Type Safety &amp; Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ 7. Type Safety &amp; Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-specific-typing-over-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Specific Typing over any
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-robust-error-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Robust Error Boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1835,7 +1913,26 @@
 <li><strong>Immutability</strong>: Once a transaction is recorded, it cannot be deleted or modified through the application UI.</li>
 </ul>
 <hr />
-<p><em>Technical Manual v1.1 | © 2026 Remitpro Technologies</em></p>
+<h2 id="7-type-safety-error-handling">🛡️ 7. Type Safety &amp; Error Handling<a class="headerlink" href="#7-type-safety-error-handling" title="Permanent link">&para;</a></h2>
+<p>Starting with v1.2, the platform enforces strict TypeScript conventions to eliminate "runtime surprises."</p>
+<h3 id="71-specific-typing-over-any">7.1 Specific Typing over <code>any</code><a class="headerlink" href="#71-specific-typing-over-any" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Data Entities</strong>: Components use Supabase-generated <code>Tables</code> types from <code>@/integrations/supabase/types</code>.</li>
+<li><strong>Service Methods</strong>: All service methods (e.g., <code>PayrollService</code>, <code>StaffService</code>) are strictly typed to ensure predictable data flow.</li>
+<li><strong>Mutations</strong>: React Query mutations use <code>typeof formData</code> or specific interfaces to validate inputs before submission.</li>
+</ul>
+<h3 id="72-robust-error-boundaries">7.2 Robust Error Boundaries<a class="headerlink" href="#72-robust-error-boundaries" title="Permanent link">&para;</a></h3>
+<p>All asynchronous operations use a standardized error-catching pattern:
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// async operation</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="o">:</span><span class="w"> </span><span class="kt">unknown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;A persistent error occurred&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+This ensures that the user always receives a human-readable explanation of failures, and the system never silently crashes due to malformed error objects.</p>
+<hr />
+<p><em>Technical Manual v1.2 | © 2026 Remitpro Technologies</em></p>
 
 
 

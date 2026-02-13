@@ -2721,8 +2721,8 @@
 
 
 <h1 id="schoolpay-pro-technical-architecture-document">SchoolPay Pro - Technical Architecture Document<a class="headerlink" href="#schoolpay-pro-technical-architecture-document" title="Permanent link">&para;</a></h1>
-<p><strong>Version:</strong> 2.0.0<br />
-<strong>Last Updated:</strong> 2026-02-01<br />
+<p><strong>Version:</strong> 2.1.0<br />
+<strong>Last Updated:</strong> 2026-02-12<br />
 <strong>Status:</strong> Production-Ready</p>
 <hr />
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
@@ -2810,7 +2810,7 @@
 <li><strong>Security by Default</strong>: All data access controlled by RLS; sensitive operations in Edge Functions</li>
 <li><strong>Offline-First</strong>: Critical workflows (attendance) function without internet connectivity</li>
 <li><strong>Financial Integrity</strong>: Immutable transaction logs; double-entry accounting principles</li>
-<li><strong>Type Safety</strong>: End-to-end TypeScript with Zod runtime validation</li>
+<li><strong>Type Safety</strong>: End-to-end TypeScript with specific types for all service methods and component props. Avoidance of the <code>any</code> keyword in favor of strict typing and <code>unknown</code> error handling.</li>
 <li><strong>Multi-Tenant Isolation</strong>: Strict data segregation at database level</li>
 <li><strong>Auditability</strong>: Comprehensive logging of all state-changing operations</li>
 <li><strong>Progressive Enhancement</strong>: Core features work on basic browsers; enhanced on modern ones</li>

@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/developer/api-reference/">
+        <link rel="canonical" href="https://docs.remitpro.io/developer/api-reference/">
       
       
         <link rel="prev" href="../technical-manual/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>API Reference - SchoolPay Pro 🎓</title>
+        <title>API Reference - Remitpro 🎓</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -860,22 +860,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#api-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Endpoints
+        🛠️ API Endpoints
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Endpoints">
+    <nav class="md-nav" aria-label="🛠️ API Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-onboard-school" class="md-nav__link">
+  <a href="#1-register-school-owner-post-apiauthsignup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. onboard-school
+        1. Register School &amp; Owner (POST /api/auth/signup)
       
     </span>
   </a>
@@ -883,10 +883,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-generate-virtual-account" class="md-nav__link">
+  <a href="#2-user-login-post-apiauthlogin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. generate-virtual-account
+        2. User Login (POST /api/auth/login)
       
     </span>
   </a>
@@ -894,10 +894,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-invite-user" class="md-nav__link">
+  <a href="#3-get-active-session-get-apiauthsession" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. invite-user
+        3. Get Active Session (GET /api/auth/session)
       
     </span>
   </a>
@@ -905,10 +905,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-verify-payment" class="md-nav__link">
+  <a href="#4-accept-user-invitation-post-apiauthaccept-invite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. verify-payment
+        4. Accept User Invitation (POST /api/auth/accept-invite)
       
     </span>
   </a>
@@ -916,10 +916,87 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-monnify-webhook" class="md-nav__link">
+  <a href="#5-onboard-school-post-apionboard-school" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. monnify-webhook
+        5. Onboard School (POST /api/onboard-school)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-generate-virtual-account-post-apigenerate-virtual-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Generate Virtual Account (POST /api/generate-virtual-account)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-invite-staff-user-post-apiinvite-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Invite Staff User (POST /api/invite-user)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-verify-monnify-payment-post-apiverify-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Verify Monnify Payment (POST /api/verify-payment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-monnify-webhook-handler-post-apimonnify-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Monnify Webhook Handler (POST /api/monnify-webhook)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-promote-students-post-apipromote-students" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Promote Students (POST /api/promote-students)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-send-proxy-email-post-apisend-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Send Proxy Email (POST /api/send-email)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-send-proxy-sms-post-apisend-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Send Proxy SMS (POST /api/send-sms)
       
     </span>
   </a>
@@ -932,22 +1009,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#webhook-specification" class="md-nav__link">
+  <a href="#webhookrealtime-specifications" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📡 Webhook Specification
+        📡 Webhook/Realtime Specifications
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📡 Webhook Specification">
+    <nav class="md-nav" aria-label="📡 Webhook/Realtime Specifications">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#event-payment_success" class="md-nav__link">
+  <a href="#event-schema-payment_success" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Event: PAYMENT_SUCCESS
+        Event Schema: PAYMENT_SUCCESS
       
     </span>
   </a>
@@ -1313,22 +1390,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#api-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Endpoints
+        🛠️ API Endpoints
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Endpoints">
+    <nav class="md-nav" aria-label="🛠️ API Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-onboard-school" class="md-nav__link">
+  <a href="#1-register-school-owner-post-apiauthsignup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. onboard-school
+        1. Register School &amp; Owner (POST /api/auth/signup)
       
     </span>
   </a>
@@ -1336,10 +1413,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-generate-virtual-account" class="md-nav__link">
+  <a href="#2-user-login-post-apiauthlogin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. generate-virtual-account
+        2. User Login (POST /api/auth/login)
       
     </span>
   </a>
@@ -1347,10 +1424,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-invite-user" class="md-nav__link">
+  <a href="#3-get-active-session-get-apiauthsession" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. invite-user
+        3. Get Active Session (GET /api/auth/session)
       
     </span>
   </a>
@@ -1358,10 +1435,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-verify-payment" class="md-nav__link">
+  <a href="#4-accept-user-invitation-post-apiauthaccept-invite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. verify-payment
+        4. Accept User Invitation (POST /api/auth/accept-invite)
       
     </span>
   </a>
@@ -1369,10 +1446,87 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-monnify-webhook" class="md-nav__link">
+  <a href="#5-onboard-school-post-apionboard-school" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. monnify-webhook
+        5. Onboard School (POST /api/onboard-school)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-generate-virtual-account-post-apigenerate-virtual-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Generate Virtual Account (POST /api/generate-virtual-account)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-invite-staff-user-post-apiinvite-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Invite Staff User (POST /api/invite-user)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-verify-monnify-payment-post-apiverify-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Verify Monnify Payment (POST /api/verify-payment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-monnify-webhook-handler-post-apimonnify-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Monnify Webhook Handler (POST /api/monnify-webhook)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-promote-students-post-apipromote-students" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Promote Students (POST /api/promote-students)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-send-proxy-email-post-apisend-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Send Proxy Email (POST /api/send-email)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-send-proxy-sms-post-apisend-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Send Proxy SMS (POST /api/send-sms)
       
     </span>
   </a>
@@ -1385,22 +1539,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#webhook-specification" class="md-nav__link">
+  <a href="#webhookrealtime-specifications" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📡 Webhook Specification
+        📡 Webhook/Realtime Specifications
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📡 Webhook Specification">
+    <nav class="md-nav" aria-label="📡 Webhook/Realtime Specifications">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#event-payment_success" class="md-nav__link">
+  <a href="#event-schema-payment_success" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Event: PAYMENT_SUCCESS
+        Event Schema: PAYMENT_SUCCESS
       
     </span>
   </a>
@@ -1441,94 +1595,187 @@
 
 
 <h1 id="api-reference-integration-guide">API Reference &amp; Integration Guide 🔌<a class="headerlink" href="#api-reference-integration-guide" title="Permanent link">&para;</a></h1>
-<p>SchoolPay Pro provides a suite of internal and external APIs (via Supabase Edge Functions) to power the multi-tenant ecosystem.</p>
+<p>Remitpro provides a suite of internal and external API endpoints via a Node.js/Express server to power the multi-tenant school operations, payment services, and messaging workflows.</p>
 <hr />
 <h2 id="base-configuration">🏗️ Base Configuration<a class="headerlink" href="#base-configuration" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>API URL</strong>: <code>https://[PROJECT_ID].supabase.co/functions/v1/</code></li>
-<li><strong>Authentication</strong>: Bearer Token (User JWT) or Service Role Key for background processes.</li>
+<li><strong>Local Development URL</strong>: <code>http://localhost:5001/api</code></li>
+<li><strong>Production URL</strong>: <code>https://[YOUR_EXPRESS_HOST]/api</code></li>
+<li><strong>Authentication</strong>: Custom JWT Auth Token (sent via <code>Authorization: Bearer &lt;JWT&gt;</code>). User login, registration, and sessions are completely database-driven and managed by the Express microservices.</li>
 </ul>
 <hr />
-<h2 id="endpoints">🛠️ Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="1-onboard-school">1. <code>onboard-school</code><a class="headerlink" href="#1-onboard-school" title="Permanent link">&para;</a></h3>
-<p>Initializes a new school workspace and provisions financial sub-accounts.</p>
-<ul>
-<li><strong>Method</strong>: <code>POST</code></li>
-<li><strong>Payload</strong>:
+<h2 id="api-endpoints">🛠️ API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="1-register-school-owner-post-apiauthsignup">1. Register School &amp; Owner (<code>POST /api/auth/signup</code>)<a class="headerlink" href="#1-register-school-owner-post-apiauthsignup" title="Permanent link">&para;</a></h3>
+<p>Registers a new school tenant and creates the default owner account in the <code>profiles</code> table.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Payload</strong>:
   <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Academic Excellence School&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin@school.com&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+2348000000000&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Education Way, Lagos&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;bankName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GTBank&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner@school.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SecurePassword123!&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fullName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Adebayo Adesina&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;schoolName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lagos Academic Center&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+2348031112222&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12 Broad St, Lagos&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code>
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJI...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-string-here&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner@school.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fullName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Adebayo Adesina&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-school-id&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="2-user-login-post-apiauthlogin">2. User Login (<code>POST /api/auth/login</code>)<a class="headerlink" href="#2-user-login-post-apiauthlogin" title="Permanent link">&para;</a></h3>
+<p>Authenticates user credentials and issues a custom JWT access token.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@school.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SecurePassword123!&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> (returns <code>success</code>, <code>token</code>, and <code>user</code> profile data).</p>
+<h3 id="3-get-active-session-get-apiauthsession">3. Get Active Session (<code>GET /api/auth/session</code>)<a class="headerlink" href="#3-get-active-session-get-apiauthsession" title="Permanent link">&para;</a></h3>
+<p>Retrieves the logged-in user profile from the database based on the provided JWT bearer token.
+- <strong>Method</strong>: <code>GET</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;JWT&gt;</code>
+- <strong>Response</strong>: <code>200 OK</code> (returns the user profile data).</p>
+<h3 id="4-accept-user-invitation-post-apiauthaccept-invite">4. Accept User Invitation (<code>POST /api/auth/accept-invite</code>)<a class="headerlink" href="#4-accept-user-invitation-post-apiauthaccept-invite" title="Permanent link">&para;</a></h3>
+<p>Completes registration for a new user by verifying their invitation JWT token and saving their password credentials.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invitation-jwt-token-here&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UserChosenPassword123!&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fullName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chioma Nze&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> (returns session token and user profile data).</p>
+<h3 id="5-onboard-school-post-apionboard-school">5. Onboard School (<code>POST /api/onboard-school</code>)<a class="headerlink" href="#5-onboard-school-post-apionboard-school" title="Permanent link">&para;</a></h3>
+<p>Initializes a new school workspace, provisions their tenant record in Neon, and sets up a Monnify bank sub-account for split remittances.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;Admin_JWT&gt;</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Greenwood International School&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin@greenwood.edu.ng&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+2348031234567&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12 High School Rd, Lagos&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;bankName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wema Bank&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;accountNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;accountName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Academic Excellence Ltd&quot;</span>
+<span class="w">  </span><span class="nt">&quot;accountName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Greenwood Edu Services&quot;</span>
 <span class="p">}</span>
-</code></pre></div></li>
-<li><strong>Response</strong>: <code>200 OK</code> with <code>schoolId</code> and <code>subAccountCode</code>.</li>
-</ul>
-<h3 id="2-generate-virtual-account">2. <code>generate-virtual-account</code><a class="headerlink" href="#2-generate-virtual-account" title="Permanent link">&para;</a></h3>
-<p>Provisions a dedicated bank account for a specific student.</p>
-<ul>
-<li><strong>Method</strong>: <code>POST</code></li>
-<li><strong>Payload</strong>:
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code>
   <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;studentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-of-student&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-of-school&quot;</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-string-here&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;subAccountCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MFY_SUB_...&quot;</span>
 <span class="p">}</span>
-</code></pre></div></li>
-<li><strong>Response</strong>: Returns the account number and bank name assigned to the student.</li>
-</ul>
-<h3 id="3-invite-user">3. <code>invite-user</code><a class="headerlink" href="#3-invite-user" title="Permanent link">&para;</a></h3>
-<p>Triggers the RBAC onboarding workflow for staff.</p>
-<ul>
-<li><strong>Method</strong>: <code>POST</code></li>
-<li><strong>Payload</strong>:
+</code></pre></div></p>
+<h3 id="6-generate-virtual-account-post-apigenerate-virtual-account">6. Generate Virtual Account (<code>POST /api/generate-virtual-account</code>)<a class="headerlink" href="#6-generate-virtual-account-post-apigenerate-virtual-account" title="Permanent link">&para;</a></h3>
+<p>Provisions a dedicated bank virtual account (Wema/Rolez) for a student via the Monnify API.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;User_JWT&gt;</code>
+- <strong>Payload</strong>:
   <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;staff@school.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;studentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-student-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-school-id&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> returning details of the reserved bank account.</p>
+<h3 id="7-invite-staff-user-post-apiinvite-user">7. Invite Staff User (<code>POST /api/invite-user</code>)<a class="headerlink" href="#7-invite-staff-user-post-apiinvite-user" title="Permanent link">&para;</a></h3>
+<p>Initiates the onboarding/RBAC invite flow for bursars and other staff members by issuing a secure JWT-based invitation token.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;Admin_JWT&gt;</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bursar@greenwood.edu.ng&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bursar&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span>
+<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-school-id&quot;</span>
 <span class="p">}</span>
-</code></pre></div></li>
-<li><strong>Response</strong>: Sends invitation email and returns <code>200 OK</code>.</li>
-</ul>
-<h3 id="4-verify-payment">4. <code>verify-payment</code><a class="headerlink" href="#4-verify-payment" title="Permanent link">&para;</a></h3>
-<p>Direct server-to-server verification of a transaction.</p>
-<ul>
-<li><strong>Method</strong>: <code>POST</code></li>
-<li><strong>Payload</strong>: { "transactionReference": "REF-123" }</li>
-<li><strong>Logic</strong>: Considers both Monnify status and internal ledger consistency.</li>
-</ul>
-<h3 id="5-monnify-webhook">5. <code>monnify-webhook</code><a class="headerlink" href="#5-monnify-webhook" title="Permanent link">&para;</a></h3>
-<p>Handles real-time payment notifications from Monnify.</p>
-<ul>
-<li><strong>Method</strong>: <code>POST</code></li>
-<li><strong>Headers</strong>: <code>monnify-signature</code> (HMAC-SHA512)</li>
-<li><strong>Logic</strong>: Automatically updates <code>student_ledgers</code> and records <code>transactions</code> upon successful verification.</li>
-</ul>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> (invitation link generated and sent to the staff member).</p>
+<h3 id="8-verify-monnify-payment-post-apiverify-payment">8. Verify Monnify Payment (<code>POST /api/verify-payment</code>)<a class="headerlink" href="#8-verify-monnify-payment-post-apiverify-payment" title="Permanent link">&para;</a></h3>
+<p>Performs a direct server-to-server transaction verification against the Monnify API and processes the student ledger sync.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;User_JWT&gt;</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;transactionReference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SP-TX-1004321&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> with verified payment confirmation details.</p>
+<h3 id="9-monnify-webhook-handler-post-apimonnify-webhook">9. Monnify Webhook Handler (<code>POST /api/monnify-webhook</code>)<a class="headerlink" href="#9-monnify-webhook-handler-post-apimonnify-webhook" title="Permanent link">&para;</a></h3>
+<p>Processes transaction notifications securely received from Monnify's transaction servers.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>monnify-signature</code> (HMAC-SHA512 checksum validating the payload against the merchant secret)
+- <strong>Payload</strong>: Standard Monnify webhook JSON notification payload containing <code>transactionReference</code>, <code>amountPaid</code>, <code>paymentStatus</code>, etc.
+- <strong>Response</strong>: <code>200 OK</code> (Processes splits, sets student ledger status to Paid, and emits system alerts).</p>
+<h3 id="10-promote-students-post-apipromote-students">10. Promote Students (<code>POST /api/promote-students</code>)<a class="headerlink" href="#10-promote-students-post-apipromote-students" title="Permanent link">&para;</a></h3>
+<p>Performs batch promotion of students to the next class levels and rolls over the term cycle.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Headers</strong>: <code>Authorization: Bearer &lt;Admin_JWT&gt;</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;schoolId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-school-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;promotions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fromClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JSS1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;toClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JSS2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fromClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JSS2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;toClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JSS3&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code> (Returns summary of promoted student counts).</p>
+<h3 id="11-send-proxy-email-post-apisend-email">11. Send Proxy Email (<code>POST /api/send-email</code>)<a class="headerlink" href="#11-send-proxy-email-post-apisend-email" title="Permanent link">&para;</a></h3>
+<p>Enables transactional mailing (via Resend) without exposing server API keys to frontend assets.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;recipient@domain.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Greenwood Onboarding Invite&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;html&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;p&gt;Invite body...&lt;/p&gt;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code></p>
+<h3 id="12-send-proxy-sms-post-apisend-sms">12. Send Proxy SMS (<code>POST /api/send-sms</code>)<a class="headerlink" href="#12-send-proxy-sms-post-apisend-sms" title="Permanent link">&para;</a></h3>
+<p>Enables transactional mobile SMS sending (via Termii) to parents and staff.
+- <strong>Method</strong>: <code>POST</code>
+- <strong>Payload</strong>:
+  <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+2348000000000&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dear Parent, fee payment of ₦50,000 was successfully processed.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+- <strong>Response</strong>: <code>200 OK</code></p>
 <hr />
-<h2 id="webhook-specification">📡 Webhook Specification<a class="headerlink" href="#webhook-specification" title="Permanent link">&para;</a></h2>
-<p>If you wish to integrate your own internal systems with SchoolPay Pro, you can subscribe to our event stream (via Supabase Realtime).</p>
-<h3 id="event-payment_success">Event: <code>PAYMENT_SUCCESS</code><a class="headerlink" href="#event-payment_success" title="Permanent link">&para;</a></h3>
-<p>Triggered when a student successfully pays their fees.
+<h2 id="webhookrealtime-specifications">📡 Webhook/Realtime Specifications<a class="headerlink" href="#webhookrealtime-specifications" title="Permanent link">&para;</a></h2>
+<p>If you wish to subscribe to payment events asynchronously, configure listener endpoints against <strong>Supabase Realtime</strong> listening on the <code>transactions</code> table.</p>
+<h3 id="event-schema-payment_success">Event Schema: <code>PAYMENT_SUCCESS</code><a class="headerlink" href="#event-schema-payment_success" title="Permanent link">&para;</a></h3>
+<p>Emitted automatically when a virtual account payment settles.
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PAYMENT_SUCCESS&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;student_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">55000.00</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;transaction_ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SP-123456&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;paid_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-24T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="nt">&quot;student_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-student-id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">48500.00</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;transaction_ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MNFY-98217340&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paid_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-20T12:00:00Z&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></p>
 <hr />
 <h2 id="rate-limiting-quotas">🔐 Rate Limiting &amp; Quotas<a class="headerlink" href="#rate-limiting-quotas" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Standard Tier</strong>: 100 requests / minute per school.</li>
-<li><strong>Enterprise Tier</strong>: Dedicated capacity with custom throughput.</li>
+<li><strong>Standard Tier</strong>: 120 requests / minute per tenant.</li>
+<li><strong>Enterprise Tier</strong>: Scalable clusters with custom throughput settings.</li>
 </ul>
 <hr />
-<p><em>API v1.0 Documentation | © 2026 Remitpro Technologies</em></p>
+<p><em>API v2.0 Documentation | © 2026 Remitpro Technologies</em></p>
 
 
 

@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/">
+        <link rel="canonical" href="https://docs.remitpro.io/">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>SchoolPay Pro 🎓</title>
+        <title>Remitpro 🎓</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#schoolpay-pro" class="md-skip">
+        <a href="#remitpro" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="assets/images/logo.png" alt="logo">
 
@@ -105,7 +105,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -368,12 +368,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -545,10 +545,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-deploy-edge-functions" class="md-nav__link">
+  <a href="#4-run-the-express-backend-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Deploy Edge Functions
+        4. Run the Express Backend Server
       
     </span>
   </a>
@@ -1441,10 +1441,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-deploy-edge-functions" class="md-nav__link">
+  <a href="#4-run-the-express-backend-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Deploy Edge Functions
+        4. Run the Express Backend Server
       
     </span>
   </a>
@@ -1523,20 +1523,20 @@
 
 
 
-<h1 id="schoolpay-pro">SchoolPay Pro 🎓<a class="headerlink" href="#schoolpay-pro" title="Permanent link">&para;</a></h1>
+<h1 id="remitpro">Remitpro 🎓<a class="headerlink" href="#remitpro" title="Permanent link">&para;</a></h1>
 <p><strong>The Ultimate Multi-tenant SaaS for School Fees Management.</strong></p>
-<p>SchoolPay Pro is a production-ready, enterprise-grade Fintech solution for educational institutions. Built for the Nigerian market, it automates fee collection through Monnify virtual accounts and features a unique "N200 Flat-Fee" revenue model for the platform owner.</p>
+<p>Remitpro is a production-ready, enterprise-grade Fintech solution for educational institutions. Built for the Nigerian market, it automates fee collection through Monnify virtual accounts and features a unique "N200 Flat-Fee" revenue model for the platform owner.</p>
 <h2 id="documentation">📚 Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="product/user-journey/">User Guide</a></strong>: A complete walkthrough for School Admins &amp; Bursars.</li>
 <li><strong><a href="developer/technical-manual/">Technical Manual</a></strong>: Deep-dive into architecture, RLS, and Fintech logic.</li>
-<li><strong><a href="developer/deployment/">Deployment Guide</a></strong>: Steps to launch SchoolPay Pro in a production environment.</li>
+<li><strong><a href="developer/deployment/">Deployment Guide</a></strong>: Steps to launch Remitpro in a production environment.</li>
 <li><strong><a href="user-guides/super-admin/">Super-Admin Guide</a></strong>: Documentation for the SaaS platform owner.</li>
 </ul>
 <h2 id="enterprise-support-documents">🏢 Enterprise Support Documents<a class="headerlink" href="#enterprise-support-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="governance/security-compliance/">Security &amp; Compliance</a></strong>: RLS, data privacy, and fintech safety frameworks.</li>
-<li><strong><a href="developer/api-reference/">API Reference</a></strong>: Documentation for edge functions and external integrations.</li>
+<li><strong><a href="developer/api-reference/">API Reference</a></strong>: Documentation for backend microservices and external integrations.</li>
 <li><strong><a href="governance/sla/">Service Level Agreement (SLA)</a></strong>: Uptime, support, and settlement commitments.</li>
 <li><strong><a href="planning/roadmap/">Product Roadmap</a></strong>: Future features and planned platform expansions.</li>
 <li><strong><a href="developer/testing/">Manual Test Guide</a></strong>: Task-based QA and testing instructions.</li>
@@ -1580,7 +1580,8 @@
 <ul>
 <li><strong>Frontend</strong>: <a href="https://react.dev/">React 18</a> + <a href="https://vitejs.dev/">Vite</a></li>
 <li><strong>Styling</strong>: <a href="https://tailwindcss.com/">Tailwind CSS</a> + <a href="https://ui.shadcn.com/">shadcn/ui</a> (Radix Primitives)</li>
-<li><strong>Database Architecture</strong>: <a href="https://supabase.com/">Supabase</a> (PostgreSQL + Auth + Edge Functions)</li>
+<li><strong>Backend microservices</strong>: Node.js/Express (TypeScript) server (located in <code>server/</code>)</li>
+<li><strong>Database Architecture</strong>: <a href="https://neon.tech/">Neon</a> PostgreSQL + <a href="https://supabase.com/">Supabase</a> (Auth + Storage)</li>
 <li><strong>ORM</strong>: <a href="https://orm.drizzle.team/">Drizzle ORM</a> for migrations and type-safe auditing.</li>
 <li><strong>Fintech Integration</strong>: <a href="https://monnify.com/">Monnify API</a> (Subaccounts, Reserved Accounts, Webhooks).</li>
 <li><strong>State Management</strong>: <a href="https://tanstack.com/query/latest">TanStack Query v5</a>.</li>
@@ -1590,44 +1591,55 @@
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Node.js (v20+ recommended)</li>
-<li>Supabase Account &amp; <a href="https://supabase.com/docs/guides/cli">CLI</a></li>
+<li>Neon PostgreSQL Account</li>
+<li>Supabase Account</li>
 <li>Monnify API Keys (Merchant Code, API Key, Secret Key)</li>
 </ul>
 <h3 id="1-installation">1. Installation<a class="headerlink" href="#1-installation" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository_url&gt;
-<span class="nb">cd</span><span class="w"> </span>schoolpay-pro
+<span class="nb">cd</span><span class="w"> </span>remitpro
 npm<span class="w"> </span>install
 </code></pre></div>
 <h3 id="2-database-setup">2. Database Setup<a class="headerlink" href="#2-database-setup" title="Permanent link">&para;</a></h3>
-<p>SchoolPay Pro uses Drizzle ORM to manage its high-integrity schema.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Push schema to Supabase</span>
+<p>Remitpro uses Drizzle ORM to manage its high-integrity schema. Ensure you configure your <code>DATABASE_URL</code> pointing to your Neon instance in your <code>.env</code> file first.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Push schema to Neon database</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:push
 
-<span class="c1"># Apply multi-tenant security policies (RLS)</span>
+<span class="c1"># Apply multi-tenant security policies (RLS) to tables</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:rls
 
 <span class="c1"># Setup system triggers (Auto-profile creation)</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:triggers
 </code></pre></div>
 <h3 id="3-environment-variables">3. Environment Variables<a class="headerlink" href="#3-environment-variables" title="Permanent link">&para;</a></h3>
-<p>Create a <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span><code>VITE_SUPABASE_URL=your_project_url
+<p>Create a <code>.env</code> file in the root directory:</p>
+<div class="highlight"><pre><span></span><code># Client Supabase Credentials
+VITE_SUPABASE_URL=your_project_url
 VITE_SUPABASE_ANON_KEY=your_anon_key
-DATABASE_URL=your_postgres_connection_string
-</code></pre></div>
-<h3 id="4-deploy-edge-functions">4. Deploy Edge Functions<a class="headerlink" href="#4-deploy-edge-functions" title="Permanent link">&para;</a></h3>
-<p>Deploy the logic for onboarding and payment processing.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Deploy all functions</span>
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>onboard-school
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>generate-virtual-account
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>monnify-webhook
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>invite-user
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>promote-students
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>verify-payment
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>send-email
 
-<span class="c1"># Set Fintech Secrets</span>
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">MONNIFY_API_KEY</span><span class="o">=</span>...<span class="w"> </span><span class="nv">MONNIFY_SECRET_KEY</span><span class="o">=</span>...<span class="w"> </span><span class="nv">PLATFORM_SUBACCOUNT_CODE</span><span class="o">=</span>...<span class="w"> </span><span class="nv">RESEND_API_KEY</span><span class="o">=</span>...
+# Backend Microservices URL
+VITE_MICROSERVICES_URL=http://localhost:5000/api
+
+# Database connection
+DATABASE_URL=your_neon_postgres_connection_string
+
+# Backend Credentials
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+MONNIFY_API_KEY=your_monnify_api_key
+MONNIFY_SECRET_KEY=your_monnify_secret_key
+MONNIFY_BASE_URL=https://sandbox.monnify.com
+PLATFORM_SUBACCOUNT_CODE=your_fees_subaccount_code
+RESEND_API_KEY=your_resend_api_key
+TERMII_API_KEY=your_termii_api_key
+</code></pre></div>
+<h3 id="4-run-the-express-backend-server">4. Run the Express Backend Server<a class="headerlink" href="#4-run-the-express-backend-server" title="Permanent link">&para;</a></h3>
+<p>To start the backend microservices server locally:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run the Express server in watch/development mode</span>
+npm<span class="w"> </span>run<span class="w"> </span>server:dev
+</code></pre></div>
+<p>Then run the React frontend:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start Vite development server</span>
+npm<span class="w"> </span>run<span class="w"> </span>dev
 </code></pre></div>
 <hr />
 <h2 id="roles-security">👮 Roles &amp; Security<a class="headerlink" href="#roles-security" title="Permanent link">&para;</a></h2>
@@ -1662,13 +1674,13 @@ supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">
 <ol>
 <li><strong>Sign Up</strong>: Create an account via the standard login/signup page.</li>
 <li><strong>Onboarding</strong>: After signup, you will be redirected to the Onboarding Page. Enter your school details and <strong>Settlement Bank Account</strong>.</li>
-<li><strong>Wait for Provisioning</strong>: The system automatically creates your Monnify Subaccount.</li>
+<li><strong>Wait for Provisioning</strong>: The backend automatically calls Monnify to create your school Subaccount.</li>
 <li><strong>Enroll Students</strong>: Import your student list via CSV.</li>
 <li><strong>Collect Fees</strong>: Click "Generate Virtual Account" for a student. Parents can then transfer funds directly to that account.</li>
 </ol>
 <hr />
 <h2 id="license">📄 License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
-<p>This project is licensed under the MIT License. Built with ❤️ by <a href="https://remitpro.ng">Remitpro</a>.</p>
+<p>This project is licensed under the MIT License. Built with ❤️ by <a href="https://remitpro.io">Remitpro</a>.</p>
 
 
 

@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/developer/architecture/">
+        <link rel="canonical" href="https://docs.remitpro.io/developer/architecture/">
       
       
         <link rel="prev" href="../../user-guides/super-admin/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Architecture - SchoolPay Pro 🎓</title>
+        <title>Architecture - Remitpro 🎓</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#schoolpay-pro-technical-architecture-document" class="md-skip">
+        <a href="#remitpro-technical-architecture-document" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1033,22 +1033,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-edge-functions-architecture" class="md-nav__link">
+  <a href="#51-express-microservices-backend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 Edge Functions Architecture
+        5.1 Express Microservices Backend
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5.1 Edge Functions Architecture">
+    <nav class="md-nav" aria-label="5.1 Express Microservices Backend">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-inventory" class="md-nav__link">
+  <a href="#client-request-interception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Function Inventory
+        Client Request Interception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-route-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints / Route Handlers
       
     </span>
   </a>
@@ -2182,22 +2193,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-edge-functions-architecture" class="md-nav__link">
+  <a href="#51-express-microservices-backend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 Edge Functions Architecture
+        5.1 Express Microservices Backend
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5.1 Edge Functions Architecture">
+    <nav class="md-nav" aria-label="5.1 Express Microservices Backend">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-inventory" class="md-nav__link">
+  <a href="#client-request-interception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Function Inventory
+        Client Request Interception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-route-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints / Route Handlers
       
     </span>
   </a>
@@ -2720,7 +2742,7 @@
 
 
 
-<h1 id="schoolpay-pro-technical-architecture-document">SchoolPay Pro - Technical Architecture Document<a class="headerlink" href="#schoolpay-pro-technical-architecture-document" title="Permanent link">&para;</a></h1>
+<h1 id="remitpro-technical-architecture-document">Remitpro - Technical Architecture Document<a class="headerlink" href="#remitpro-technical-architecture-document" title="Permanent link">&para;</a></h1>
 <p><strong>Version:</strong> 2.1.0<br />
 <strong>Last Updated:</strong> 2026-02-12<br />
 <strong>Status:</strong> Production-Ready</p>
@@ -2742,7 +2764,7 @@
 </ol>
 <hr />
 <h2 id="1-executive-summary">1. Executive Summary<a class="headerlink" href="#1-executive-summary" title="Permanent link">&para;</a></h2>
-<p><strong>SchoolPay Pro</strong> is a multi-tenant SaaS platform designed for Nigerian educational institutions to manage finances, academics, HR, and operations. Built on a modern <strong>serverless-first architecture</strong>, the system leverages Supabase (PostgreSQL + Edge Functions), React (Vite), and Drizzle ORM to deliver a secure, scalable, and offline-capable solution.</p>
+<p><strong>Remitpro</strong> is a multi-tenant SaaS platform designed for Nigerian educational institutions to manage finances, academics, HR, and operations. Built on a modular service architecture, the system leverages React (Vite) on the frontend, a Node.js/Express backend (microservices), and Neon (PostgreSQL) managed via Drizzle ORM to deliver a secure, scalable, and offline-capable solution.</p>
 <h3 id="11-key-architectural-characteristics">1.1 Key Architectural Characteristics<a class="headerlink" href="#11-key-architectural-characteristics" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2770,7 +2792,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Scalability</strong></td>
-<td style="text-align: left;">Serverless edge functions, connection pooling, indexed queries</td>
+<td style="text-align: left;">Modular microservices, Neon connection pooling, indexed queries</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Compliance</strong></td>
@@ -2784,19 +2806,15 @@
 │  React 18 + TypeScript 5 + Vite + Tailwind + Shadcn/UI     │
 │  React Query + React Router + PWA (Service Workers)         │
 └─────────────────────────────────────────────────────────────┘
-                            ↕ HTTPS/WSS
-┌─────────────────────────────────────────────────────────────┐
-│                   SUPABASE PLATFORM                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │  PostgreSQL  │  │ Edge Functions│  │ Auth (GoTrue)│      │
-│  │  + RLS       │  │   (Deno)      │  │              │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│  ┌──────────────┐  ┌──────────────┐                         │
-│  │   Storage    │  │  Realtime    │                         │
-│  │   (S3-like)  │  │  (WebSocket) │                         │
-│  └──────────────┘  └──────────────┘                         │
-└─────────────────────────────────────────────────────────────┘
-                            ↕ HTTPS
+         ↕ HTTPS / WSS                             ↕ HTTPS
+┌───────────────────────────┐             ┌───────────────────┐
+│     NEON DATABASE         │             │  EXPRESS BACKEND  │
+│  ┌─────────────────────┐  │             │  ┌─────────────┐  │
+│  │ PostgreSQL + RLS    │◄─┼─────────────┼─►│ Route APIs  │  │
+│  └─────────────────────┘  │             │  │ (Node/TS)   │  │
+└───────────────────────────┘             │  └─────────────┘  │
+                                          └───────────────────┘
+                                                    ↕ HTTPS
 ┌─────────────────────────────────────────────────────────────┐
 │              EXTERNAL INTEGRATIONS                           │
 │  Monnify (Payments) | Resend (Email) | Termii (SMS)        │
@@ -2807,7 +2825,7 @@
 <p>The system is built on the following core principles:</p>
 <h3 id="21-design-principles">2.1 Design Principles<a class="headerlink" href="#21-design-principles" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Security by Default</strong>: All data access controlled by RLS; sensitive operations in Edge Functions</li>
+<li><strong>Security by Default</strong>: All data access controlled by RLS; sensitive operations in Express Microservices Backend</li>
 <li><strong>Offline-First</strong>: Critical workflows (attendance) function without internet connectivity</li>
 <li><strong>Financial Integrity</strong>: Immutable transaction logs; double-entry accounting principles</li>
 <li><strong>Type Safety</strong>: End-to-end TypeScript with specific types for all service methods and component props. Avoidance of the <code>any</code> keyword in favor of strict typing and <code>unknown</code> error handling.</li>
@@ -2827,28 +2845,28 @@
 <h2 id="3-system-architecture">3. System Architecture<a class="headerlink" href="#3-system-architecture" title="Permanent link">&para;</a></h2>
 <h3 id="31-high-level-system-context">3.1 High-Level System Context<a class="headerlink" href="#31-high-level-system-context" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>C4Context
-    title System Context - SchoolPay Pro
+    title System Context - Remitpro
 
     Person(admin, &quot;School Admin&quot;, &quot;Manages school operations&quot;)
     Person(teacher, &quot;Teacher&quot;, &quot;Records grades, attendance&quot;)
     Person(parent, &quot;Parent&quot;, &quot;Pays fees, views reports&quot;)
     Person(superadmin, &quot;Platform Owner&quot;, &quot;Monitors all schools&quot;)
 
-    System(schoolpay, &quot;SchoolPay Pro&quot;, &quot;Multi-tenant school management platform&quot;)
+    System(remitpro, &quot;Remitpro&quot;, &quot;Multi-tenant school management platform&quot;)
 
     System_Ext(monnify, &quot;Monnify&quot;, &quot;Payment gateway&quot;)
     System_Ext(resend, &quot;Resend&quot;, &quot;Email delivery&quot;)
     System_Ext(termii, &quot;Termii&quot;, &quot;SMS gateway&quot;)
 
-    Rel(admin, schoolpay, &quot;Manages via web&quot;)
-    Rel(teacher, schoolpay, &quot;Records data via mobile/web&quot;)
-    Rel(parent, schoolpay, &quot;Pays fees, views reports&quot;)
-    Rel(superadmin, schoolpay, &quot;Monitors platform&quot;)
+    Rel(admin, remitpro, &quot;Manages via web&quot;)
+    Rel(teacher, remitpro, &quot;Records data via mobile/web&quot;)
+    Rel(parent, remitpro, &quot;Pays fees, views reports&quot;)
+    Rel(superadmin, remitpro, &quot;Monitors platform&quot;)
 
-    Rel(schoolpay, monnify, &quot;Processes payments&quot;)
-    Rel(schoolpay, resend, &quot;Sends emails&quot;)
-    Rel(schoolpay, termii, &quot;Sends SMS&quot;)
-    Rel(monnify, schoolpay, &quot;Webhook notifications&quot;)
+    Rel(remitpro, monnify, &quot;Processes payments&quot;)
+    Rel(remitpro, resend, &quot;Sends emails&quot;)
+    Rel(remitpro, termii, &quot;Sends SMS&quot;)
+    Rel(monnify, remitpro, &quot;Webhook notifications&quot;)
 </code></pre></div>
 <h3 id="32-container-diagram">3.2 Container Diagram<a class="headerlink" href="#32-container-diagram" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>graph TB
@@ -2857,14 +2875,9 @@
         SW[Service Worker&lt;br/&gt;PWA Cache]
     end
 
-    subgraph &quot;Supabase Platform&quot;
-        API[PostgREST API&lt;br/&gt;Auto-generated]
-        Auth[GoTrue Auth&lt;br/&gt;JWT-based]
-        DB[(PostgreSQL&lt;br/&gt;with RLS)]
-        Storage[Object Storage&lt;br/&gt;S3-compatible]
-        Realtime[Realtime Server&lt;br/&gt;WebSocket]
-
-        subgraph &quot;Edge Functions (Deno)&quot;
+    subgraph &quot;Express Backend Microservices (Node/TS)&quot;
+        API[Express Router Gateway&lt;br/&gt;Local: Port 5000]
+        subgraph &quot;Route Handlers&quot;
             EF1[onboard-school]
             EF2[monnify-webhook]
             EF3[verify-payment]
@@ -2873,23 +2886,32 @@
         end
     end
 
+    subgraph &quot;Data &amp; Auth Platform&quot;
+        Auth[Supabase GoTrue Auth&lt;br/&gt;JWT-based]
+        DB[(Neon PostgreSQL&lt;br/&gt;with RLS)]
+        Storage[Object Storage&lt;br/&gt;S3-compatible]
+        Realtime[Realtime Server&lt;br/&gt;WebSocket]
+    end
+
     subgraph &quot;External Services&quot;
         Monnify[Monnify API]
         Resend[Resend API]
         Termii[Termii API]
     end
 
-    SPA --&gt;|REST/GraphQL| API
-    SPA --&gt;|Auth| Auth
-    SPA --&gt;|Invoke| EF1
+    SPA --&gt;|Direct SQL / PostgREST| DB
+    SPA --&gt;|Auth Requests| Auth
+    SPA --&gt;|API Interceptor (Invoke)| API
     SPA --&gt;|Upload| Storage
     SPA --&gt;|Subscribe| Realtime
 
-    API --&gt; DB
-    Auth --&gt; DB
-    EF1 --&gt; DB
-    EF2 --&gt; DB
-    EF3 --&gt; DB
+    API --&gt;|Route Mapping| EF1
+
+    EF1 --&gt;|Drizzle Queries| DB
+    EF2 --&gt;|Drizzle Queries| DB
+    EF3 --&gt;|Drizzle Queries| DB
+    EF4 --&gt;|GoTrue Admin / Profiles| Auth
+    EF4 --&gt;|Drizzle Queries| DB
 
     EF1 --&gt;|Create Subaccount| Monnify
     EF2 --&gt;|Verify Signature| Monnify
@@ -3057,13 +3079,16 @@
 </code></pre></div>
 <hr />
 <h2 id="5-backend-architecture">5. Backend Architecture<a class="headerlink" href="#5-backend-architecture" title="Permanent link">&para;</a></h2>
-<h3 id="51-edge-functions-architecture">5.1 Edge Functions Architecture<a class="headerlink" href="#51-edge-functions-architecture" title="Permanent link">&para;</a></h3>
-<p>All Edge Functions run on <strong>Deno</strong> runtime with TypeScript support.</p>
-<h4 id="function-inventory">Function Inventory<a class="headerlink" href="#function-inventory" title="Permanent link">&para;</a></h4>
+<h3 id="51-express-microservices-backend">5.1 Express Microservices Backend<a class="headerlink" href="#51-express-microservices-backend" title="Permanent link">&para;</a></h3>
+<p>The backend business logic and secure API integrations run on a modular Node.js/Express server (located in <code>server/</code>) written in TypeScript. </p>
+<h4 id="client-request-interception">Client Request Interception<a class="headerlink" href="#client-request-interception" title="Permanent link">&para;</a></h4>
+<p>To maintain compatibility and prevent client refactoring, all <code>supabase.functions.invoke(...)</code> calls from the React frontend are dynamically intercepted in <code>client.ts</code> and rerouted to the Express server gateway (<code>http://localhost:5000/api</code> locally, or <code>VITE_MICROSERVICES_URL</code> in production). Active session JWT tokens are forwarded in the <code>Authorization</code> header so the server can securely verify caller identities.</p>
+<h4 id="endpoints-route-handlers">Endpoints / Route Handlers<a class="headerlink" href="#endpoints-route-handlers" title="Permanent link">&para;</a></h4>
+<p>The Express server registers 10 separate routes corresponding to the migrated functions. These routes query the Neon PostgreSQL database directly using Drizzle ORM instead of going through PostgREST/Supabase client:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Route Path</th>
 <th style="text-align: left;">HTTP Method</th>
 <th style="text-align: left;">Authentication</th>
 <th style="text-align: left;">Purpose</th>
@@ -3071,93 +3096,97 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>onboard-school</code></td>
+<td style="text-align: left;"><code>/api/onboard-school</code></td>
 <td style="text-align: left;">POST</td>
-<td style="text-align: left;">Service Role</td>
-<td style="text-align: left;">Create school + Monnify subaccount</td>
+<td style="text-align: left;">Service Role / Admin JWT</td>
+<td style="text-align: left;">Create school + provision Monnify subaccount in Neon DB</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>invite-user</code></td>
-<td style="text-align: left;">POST</td>
-<td style="text-align: left;">User JWT</td>
-<td style="text-align: left;">Send staff invitation email</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>generate-virtual-account</code></td>
-<td style="text-align: left;">POST</td>
-<td style="text-align: left;">User JWT</td>
-<td style="text-align: left;">Create student virtual account</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>monnify-webhook</code></td>
-<td style="text-align: left;">POST</td>
-<td style="text-align: left;">Webhook Signature</td>
-<td style="text-align: left;">Process payment notifications</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>webhook-payment</code></td>
-<td style="text-align: left;">POST</td>
-<td style="text-align: left;">Webhook Signature</td>
-<td style="text-align: left;">Alternative payment webhook</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>verify-payment</code></td>
-<td style="text-align: left;">POST</td>
-<td style="text-align: left;">User JWT</td>
-<td style="text-align: left;">Manual payment verification</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>promote-students</code></td>
+<td style="text-align: left;"><code>/api/invite-user</code></td>
 <td style="text-align: left;">POST</td>
 <td style="text-align: left;">Admin JWT</td>
-<td style="text-align: left;">Batch class promotion</td>
+<td style="text-align: left;">Elevate staff role, create DB profile, send Resend invite link</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>send-email</code></td>
+<td style="text-align: left;"><code>/api/generate-virtual-account</code></td>
 <td style="text-align: left;">POST</td>
-<td style="text-align: left;">Service Role</td>
-<td style="text-align: left;">Email proxy (hides API keys)</td>
+<td style="text-align: left;">User JWT (Fallback)</td>
+<td style="text-align: left;">Create student reserved Monnify account &amp; store details</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>send-sms</code></td>
+<td style="text-align: left;"><code>/api/monnify-webhook</code></td>
 <td style="text-align: left;">POST</td>
-<td style="text-align: left;">Service Role</td>
-<td style="text-align: left;">SMS proxy (hides API keys)</td>
+<td style="text-align: left;">Webhook Signature</td>
+<td style="text-align: left;">Process payment notification &amp; mark ledger paid</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>monnify-create-account</code></td>
+<td style="text-align: left;"><code>/api/webhook-payment</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Webhook Signature</td>
+<td style="text-align: left;">Alternate route for webhook validation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/verify-payment</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">User JWT</td>
+<td style="text-align: left;">Server-to-server Monnify transaction check and ledger sync</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/promote-students</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Admin JWT</td>
+<td style="text-align: left;">Run academic term rollover and promote classes in Neon</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/send-email</code></td>
 <td style="text-align: left;">POST</td>
 <td style="text-align: left;">Service Role</td>
-<td style="text-align: left;">Standalone account creation</td>
+<td style="text-align: left;">Proxy route to send email using Resend API</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/send-sms</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">Proxy route to send SMS notifications using Termii API</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/monnify-create-account</code></td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">Service Role</td>
+<td style="text-align: left;">Base virtual account setup</td>
 </tr>
 </tbody>
 </table>
 <h4 id="example-payment-webhook-security">Example: Payment Webhook Security<a class="headerlink" href="#example-payment-webhook-security" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="c1">// supabase/functions/monnify-webhook/index.ts</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createHmac</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;crypto&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// server/src/routes/webhookPayment.ts</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;express&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">crypto</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;crypto&#39;</span><span class="p">;</span>
 
-<span class="nx">Deno</span><span class="p">.</span><span class="nx">serve</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;monnify-signature&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Router</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// Verify webhook authenticity</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">computedSignature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">&#39;sha512&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">MONNIFY_SECRET</span><span class="p">)</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;monnify-signature&#39;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="c1">// Verify webhook authenticity using HMAC-SHA512</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">computedSignature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">crypto</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">&#39;sha512&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MONNIFY_SECRET_KEY</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">))</span>
 <span class="w">    </span><span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">signature</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">computedSignature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Invalid signature&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">401</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">401</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Invalid signature&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Process payment...</span>
-<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">supabase</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;transactions&#39;</span><span class="p">).</span><span class="nx">insert</span><span class="p">({</span>
+<span class="w">  </span><span class="c1">// Process payment directly in Neon via Drizzle ORM...</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">transactions</span><span class="p">).</span><span class="nx">values</span><span class="p">({</span>
 <span class="w">    </span><span class="nx">studentId</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.productCode</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.amountPaid</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">transactionReference</span><span class="o">:</span><span class="w"> </span><span class="kt">payload.transactionReference</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// ... immutable record</span>
+<span class="w">    </span><span class="c1">// ... audit details</span>
 <span class="w">  </span><span class="p">});</span>
 
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;OK&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">200</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;OK&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <h3 id="52-service-layer-pattern">5.2 Service Layer Pattern<a class="headerlink" href="#52-service-layer-pattern" title="Permanent link">&para;</a></h3>
@@ -3405,7 +3434,7 @@ Transactions (Immutable Payment Log)
 3. <strong>Split Settlement</strong>: Platform fee deducted at gateway level
 4. <strong>PCI Compliance</strong>: No card data stored (Monnify handles)</p>
 <p><strong>Virtual Account Security:</strong>
-- Accounts generated server-side only (<code>generate-virtual-account</code> edge function)
+- Accounts generated server-side only (<code>/api/generate-virtual-account</code> route)
 - Account numbers permanently linked to <code>student_id</code>
 - Cannot be reassigned or deleted</p>
 <h3 id="74-data-protection">7.4 Data Protection<a class="headerlink" href="#74-data-protection" title="Permanent link">&para;</a></h3>
@@ -3431,7 +3460,7 @@ Transactions (Immutable Payment Log)
 </tr>
 <tr>
 <td style="text-align: left;"><strong>API Keys</strong></td>
-<td style="text-align: left;">Hidden in Edge Functions (not exposed to client)</td>
+<td style="text-align: left;">Hidden in Express microservices backend (not exposed to client)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Sensitive Fields</strong></td>
@@ -3469,10 +3498,10 @@ Transactions (Immutable Payment Log)
                  └─────────────┘
                         │
                         ▼
-              ┌──────────────────┐
-              │ monnify-webhook  │
-              │  Edge Function   │
-              └──────────────────┘
+               ┌──────────────────┐
+               │ monnify-webhook  │
+               │  Express Route   │
+               └──────────────────┘
                         │
                         ▼
                 ┌──────────────┐
@@ -3486,15 +3515,15 @@ Transactions (Immutable Payment Log)
 - <strong>Settlement</strong>: Automatic to school subaccount + platform account</p>
 <h3 id="82-communication-services">8.2 Communication Services<a class="headerlink" href="#82-communication-services" title="Permanent link">&para;</a></h3>
 <h4 id="resend-email">Resend (Email)<a class="headerlink" href="#resend-email" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="c1">// Edge Function: send-email</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Express Route: /api/send-email (uses Resend client SDK or fetch)</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.resend.com/emails&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">RESEND_API_KEY</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">RESEND_API_KEY</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
 <span class="w">    </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span>
-<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;noreply@schoolpay.com.ng&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;noreply@remitpro.io&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="kt">recipient</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">subject</span><span class="o">:</span><span class="w"> </span><span class="kt">subject</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="kt">htmlContent</span>
@@ -3507,14 +3536,14 @@ Transactions (Immutable Payment Log)
 - Report card notifications
 - Password resets</p>
 <h4 id="termii-sms">Termii (SMS)<a class="headerlink" href="#termii-sms" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="c1">// Edge Function: send-sms</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Express Route: /api/send-sms</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.ng.termii.com/api/sms/send&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span>
-<span class="w">    </span><span class="nx">api_key</span><span class="o">:</span><span class="w"> </span><span class="kt">TERMII_API_KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">api_key</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.TERMII_API_KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="kt">phoneNumber</span><span class="p">,</span>
-<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SchoolPay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Remitpro&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">sms</span><span class="o">:</span><span class="w"> </span><span class="kt">message</span><span class="p">,</span>
 <span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;plain&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">channel</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;generic&#39;</span>
@@ -3545,7 +3574,7 @@ Transactions (Immutable Payment Log)
 <h2 id="9-deployment-architecture">9. Deployment Architecture<a class="headerlink" href="#9-deployment-architecture" title="Permanent link">&para;</a></h2>
 <h3 id="91-infrastructure-overview">9.1 Infrastructure Overview<a class="headerlink" href="#91-infrastructure-overview" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────────────┐
-│                    Vercel Edge Network                    │
+│                    Vercel Edge Network                   │
 │  ┌────────────────────────────────────────────────────┐  │
 │  │  Static Assets (CDN)                               │  │
 │  │  - HTML, CSS, JS (Gzipped)                        │  │
@@ -3557,19 +3586,20 @@ Transactions (Immutable Payment Log)
 │  │  - Fallback to index.html                         │  │
 │  └────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────┘
-                            ↕
-┌──────────────────────────────────────────────────────────┐
-│                   Supabase Cloud                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│  │ PostgreSQL  │  │    Auth     │  │   Storage   │      │
-│  │  (Primary)  │  │  (GoTrue)   │  │   (S3)      │      │
-│  └─────────────┘  └─────────────┘  └─────────────┘      │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │  Edge Functions (Deno Deploy)                   │    │
-│  │  - Global distribution                          │    │
-│  │  - Auto-scaling                                 │    │
-│  └─────────────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────────┘
+             ↕                                   ↕
+┌──────────────────────────┐       ┌──────────────────────────┐
+│   Neon Cloud Database    │       │          Fly.io          │
+│  ┌────────────────────┐  │       │  ┌────────────────────┐  │
+│  │ PostgreSQL + RLS   │◄─┼───────┼─►│ Express Backend    │  │
+│  └────────────────────┘  │       │  │ (Node/TS API)      │  │
+└──────────────────────────┘       └──────────────────────────┘
+                                                 ↕
+                                   ┌──────────────────────────┐
+                                   │    Supabase Platform     │
+                                   │  ┌────────────────────┐  │
+                                   │  │ GoTrue Auth &amp; S3   │  │
+                                   │  └────────────────────┘  │
+                                   └──────────────────────────┘
 </code></pre></div>
 <h3 id="92-environment-configuration">9.2 Environment Configuration<a class="headerlink" href="#92-environment-configuration" title="Permanent link">&para;</a></h3>
 <table>
@@ -3578,27 +3608,31 @@ Transactions (Immutable Payment Log)
 <th style="text-align: left;">Environment</th>
 <th style="text-align: left;">Purpose</th>
 <th style="text-align: left;">Database</th>
-<th style="text-align: left;">URL</th>
+<th style="text-align: left;">API URL</th>
+<th style="text-align: left;">Frontend URL</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Development</strong></td>
 <td style="text-align: left;">Local testing</td>
-<td style="text-align: left;">Local PostgreSQL</td>
-<td style="text-align: left;">localhost:8080</td>
+<td style="text-align: left;">Neon / Local PostgreSQL</td>
+<td style="text-align: left;">localhost:5000</td>
+<td style="text-align: left;">localhost:3000</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Staging</strong></td>
 <td style="text-align: left;">Pre-production</td>
-<td style="text-align: left;">Supabase Staging</td>
-<td style="text-align: left;">staging.schoolpay.com.ng</td>
+<td style="text-align: left;">Neon Staging</td>
+<td style="text-align: left;">remitpro-backend.fly.dev/api</td>
+<td style="text-align: left;">staging.remitpro.io</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Production</strong></td>
 <td style="text-align: left;">Live system</td>
-<td style="text-align: left;">Supabase Production</td>
-<td style="text-align: left;">app.schoolpay.com.ng</td>
+<td style="text-align: left;">Neon Production</td>
+<td style="text-align: left;">remitpro-backend.fly.dev/api</td>
+<td style="text-align: left;">app.remitpro.io</td>
 </tr>
 </tbody>
 </table>
@@ -3682,7 +3716,7 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 </tr>
 <tr>
 <td style="text-align: left;"><strong>API</strong></td>
-<td style="text-align: left;">Edge function caching</td>
+<td style="text-align: left;">Express API routes &amp; connection pool</td>
 <td style="text-align: left;">Sub-100ms response times</td>
 </tr>
 <tr>
@@ -3699,7 +3733,7 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 - <strong>Concurrent Users</strong>: 5,000+
 - <strong>Transactions/day</strong>: 50,000+</p>
 <p><strong>Scaling Strategy:</strong>
-1. <strong>Horizontal Scaling</strong>: Supabase auto-scales edge functions
+1. <strong>Horizontal Scaling</strong>: Render/Railway auto-scales Express app instances
 2. <strong>Database Scaling</strong>: Read replicas for reporting queries
 3. <strong>Caching</strong>: Redis layer for hot data (future)
 4. <strong>CDN</strong>: Static assets distributed globally</p>
@@ -3741,14 +3775,14 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 <td style="text-align: left;">Compliance, forensics</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Edge Function Logs</strong></td>
-<td style="text-align: left;">Supabase Logs</td>
+<td style="text-align: left;"><strong>API Logs</strong></td>
+<td style="text-align: left;">PM2 / CloudWatch / Render</td>
 <td style="text-align: left;">30 days</td>
 <td style="text-align: left;">Integration monitoring</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Database Logs</strong></td>
-<td style="text-align: left;">Supabase</td>
+<td style="text-align: left;">Neon / Supabase</td>
 <td style="text-align: left;">7 days</td>
 <td style="text-align: left;">Query performance</td>
 </tr>
@@ -3758,7 +3792,7 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 <p><strong>Key Metrics:</strong>
 - API response time (p50, p95, p99)
 - Database connection pool usage
-- Edge function error rate
+- Express API error rate
 - Payment success rate
 - User session duration</p>
 <p><strong>Alerting (Future):</strong>
@@ -3831,9 +3865,9 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 </tbody>
 </table>
 <h3 id="123-architectural-evolution">12.3 Architectural Evolution<a class="headerlink" href="#123-architectural-evolution" title="Permanent link">&para;</a></h3>
-<p><strong>Phase 1 (Current):</strong> Monolithic SPA + Edge Functions<br />
-<strong>Phase 2 (6 months):</strong> Microservices for heavy workloads (reporting, analytics)<br />
-<strong>Phase 3 (12 months):</strong> Event-driven architecture with message queues<br />
+<p><strong>Phase 1 (Current):</strong> Monolithic SPA + Node/Express Microservices (Neon DB)<br />
+<strong>Phase 2 (6 months):</strong> Dedicated worker microservices for heavy workloads (reporting, analytics)<br />
+<strong>Phase 3 (12 months):</strong> Event-driven architecture with message queues (e.g. RabbitMQ / Redis)<br />
 <strong>Phase 4 (18 months):</strong> Multi-region deployment for global expansion</p>
 <hr />
 <h2 id="appendix-a-technology-decisions">Appendix A: Technology Decisions<a class="headerlink" href="#appendix-a-technology-decisions" title="Permanent link">&para;</a></h2>
@@ -3846,8 +3880,8 @@ npm<span class="w"> </span>run<span class="w"> </span>db:triggers<span class="w"
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Supabase over Firebase</strong></td>
-<td style="text-align: left;">PostgreSQL (relational) better for financial data; RLS built-in</td>
+<td style="text-align: left;"><strong>Neon &amp; Supabase over Firebase</strong></td>
+<td style="text-align: left;">PostgreSQL (relational) better for financial data; RLS built-in/managed on Neon.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Vite over Create React App</strong></td>

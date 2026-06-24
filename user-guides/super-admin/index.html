@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/user-guides/super-admin/">
+        <link rel="canonical" href="https://docs.remitpro.io/user-guides/super-admin/">
       
       
         <link rel="prev" href="../school-admin/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Super Admin - SchoolPay Pro 🎓</title>
+        <title>Super Admin - Remitpro 🎓</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1553,12 +1553,12 @@
 
 
 <h1 id="super-admin-setup-user-guide">Super-Admin Setup &amp; User Guide 👮‍♂️<a class="headerlink" href="#super-admin-setup-user-guide" title="Permanent link">&para;</a></h1>
-<p>This guide explains how to initialize the platform owner account and manage the <strong>SchoolPay Pro</strong> SaaS ecosystem.</p>
+<p>This guide explains how to initialize the platform owner account and manage the <strong>Remitpro</strong> SaaS ecosystem.</p>
 <hr />
 <h2 id="step-1-initial-setup-the-god-mode-promotion">🛠️ Step 1: Initial Setup (The "God Mode" Promotion)<a class="headerlink" href="#step-1-initial-setup-the-god-mode-promotion" title="Permanent link">&para;</a></h2>
 <p>For security reasons, no account can register as a Super-Admin via the UI. You must manually promote your account using the provided database script.</p>
 <h3 id="1-register-an-account">1. Register an Account<a class="headerlink" href="#1-register-an-account" title="Permanent link">&para;</a></h3>
-<p>Sign up normally through the application's login/signup page with your official email (e.g., <code>admin@remitpro.ng</code>).</p>
+<p>Sign up normally through the application's login/signup page with your official email (e.g., <code>admin@remitpro.io</code>).</p>
 <h3 id="2-configure-the-promotion-script">2. Configure the Promotion Script<a class="headerlink" href="#2-configure-the-promotion-script" title="Permanent link">&para;</a></h3>
 <p>Open <code>src/db/promote_admin.ts</code> and update the <code>OWNER_EMAIL</code> variable with the email you just registered:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">OWNER_EMAIL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;your-email@example.com&#39;</span><span class="p">;</span><span class="w"> </span>

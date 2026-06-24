@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/planning/workplan/">
+        <link rel="canonical" href="https://docs.remitpro.io/planning/workplan/">
       
       
         <link rel="prev" href="../../governance/sla/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Workplan - SchoolPay Pro 🎓</title>
+        <title>Workplan - Remitpro 🎓</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#schoolpay-pro-production-implementation-workplan" class="md-skip">
+        <a href="#remitpro-production-implementation-workplan" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1578,6 +1578,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#113-microservices-migration-express-neon-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Microservices Migration (Express &amp; Neon DB)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2131,6 +2142,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#113-microservices-migration-express-neon-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Microservices Migration (Express &amp; Neon DB)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2164,8 +2186,8 @@
 
 
 
-<h1 id="schoolpay-pro-production-implementation-workplan">📋 SchoolPay Pro - Production Implementation Workplan<a class="headerlink" href="#schoolpay-pro-production-implementation-workplan" title="Permanent link">&para;</a></h1>
-<p>This document outlines the roadmap to take <strong>SchoolPay Pro</strong> from its current MVP state to a fully production-ready SaaS platform for schools.</p>
+<h1 id="remitpro-production-implementation-workplan">📋 Remitpro - Production Implementation Workplan<a class="headerlink" href="#remitpro-production-implementation-workplan" title="Permanent link">&para;</a></h1>
+<p>This document outlines the roadmap to take <strong>Remitpro</strong> from its current MVP state to a fully production-ready SaaS platform for schools.</p>
 <hr />
 <h2 id="phase-1-critical-security-access-week-1">🚨 Phase 1: Critical Security &amp; Access (Week 1)<a class="headerlink" href="#phase-1-critical-security-access-week-1" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Ensure secure, authorized access for real users and real-world data protection.</p>
@@ -2361,6 +2383,12 @@
 <ul>
 <li>[x] <strong>Offline-First Sync</strong>: Implement Service Workers and local storage caching for Student Attendance (allowing teachers to mark rolls without internet).</li>
 <li>[x] <strong>Query Optimization</strong>: Audit React Query stale times and pre-fetching for high-frequency dashboards.</li>
+</ul>
+<h3 id="113-microservices-migration-express-neon-db">11.3 Microservices Migration (Express &amp; Neon DB)<a class="headerlink" href="#113-microservices-migration-express-neon-db" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] <strong>Modular Backend Scaffolding</strong>: Ported all 10 Deno Edge functions to Express routes running on Node.js.</li>
+<li>[x] <strong>Direct Database Integration</strong>: Migrated data endpoints from PostgREST/Supabase client to direct Neon DB queries via Drizzle ORM.</li>
+<li>[x] <strong>Client Redirection Layer</strong>: Implemented automatic client request interception and token forwarding in the React application.</li>
 </ul>
 <hr />
 <h2 id="post-mvp-roadmap">✅ Post-MVP Roadmap<a class="headerlink" href="#post-mvp-roadmap" title="Permanent link">&para;</a></h2>

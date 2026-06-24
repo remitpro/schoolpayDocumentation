@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/developer/deployment/">
+        <link rel="canonical" href="https://docs.remitpro.io/developer/deployment/">
       
       
         <link rel="prev" href="../api-reference/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Deployment - SchoolPay Pro 🎓</title>
+        <title>Deployment - Remitpro 🎓</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#production-deployment-guide-schoolpay-pro" class="md-skip">
+        <a href="#production-deployment-guide-remitpro" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -900,10 +900,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-supabase-project" class="md-nav__link">
+  <a href="#1-neon-database-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Supabase Project
+        1. Neon Database Setup
       
     </span>
   </a>
@@ -911,10 +911,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-monnify-live-setup" class="md-nav__link">
+  <a href="#2-supabase-project-auth-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Monnify Live Setup
+        2. Supabase Project (Auth &amp; Storage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monnify-live-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Monnify Live Setup
       
     </span>
   </a>
@@ -939,10 +950,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-initialize-schema" class="md-nav__link">
+  <a href="#1-run-schema-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Initialize Schema
+        1. Run Schema Migration
       
     </span>
   </a>
@@ -960,28 +971,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-initial-seeding-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Initial Seeding (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-edge-functions-deployment" class="md-nav__link">
+  <a href="#step-3-express-backend-deployment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Step 3: Edge Functions Deployment
+        ⚡ Step 3: Express Backend Deployment
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Step 3: Edge Functions Deployment">
+    <nav class="md-nav" aria-label="⚡ Step 3: Express Backend Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-set-production-secrets" class="md-nav__link">
+  <a href="#1-configure-server-environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Set Production Secrets
+        1. Configure Server Environment Variables
       
     </span>
   </a>
@@ -989,10 +1011,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deploy-logic" class="md-nav__link">
+  <a href="#2-backend-build-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Deploy Logic
+        2. Backend Build Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deploying-specifically-to-flyio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Deploying specifically to Fly.io
       
     </span>
   </a>
@@ -1005,10 +1038,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-frontend-deployment-vercelnetlify" class="md-nav__link">
+  <a href="#step-4-frontend-deployment-vercel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Step 4: Frontend Deployment (Vercel/Netlify)
+        💻 Step 4: Frontend Deployment (Vercel)
       
     </span>
   </a>
@@ -1375,10 +1408,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-supabase-project" class="md-nav__link">
+  <a href="#1-neon-database-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Supabase Project
+        1. Neon Database Setup
       
     </span>
   </a>
@@ -1386,10 +1419,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-monnify-live-setup" class="md-nav__link">
+  <a href="#2-supabase-project-auth-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Monnify Live Setup
+        2. Supabase Project (Auth &amp; Storage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monnify-live-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Monnify Live Setup
       
     </span>
   </a>
@@ -1414,10 +1458,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-initialize-schema" class="md-nav__link">
+  <a href="#1-run-schema-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Initialize Schema
+        1. Run Schema Migration
       
     </span>
   </a>
@@ -1435,28 +1479,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-initial-seeding-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Initial Seeding (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-edge-functions-deployment" class="md-nav__link">
+  <a href="#step-3-express-backend-deployment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Step 3: Edge Functions Deployment
+        ⚡ Step 3: Express Backend Deployment
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Step 3: Edge Functions Deployment">
+    <nav class="md-nav" aria-label="⚡ Step 3: Express Backend Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-set-production-secrets" class="md-nav__link">
+  <a href="#1-configure-server-environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Set Production Secrets
+        1. Configure Server Environment Variables
       
     </span>
   </a>
@@ -1464,10 +1519,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deploy-logic" class="md-nav__link">
+  <a href="#2-backend-build-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Deploy Logic
+        2. Backend Build Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deploying-specifically-to-flyio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Deploying specifically to Fly.io
       
     </span>
   </a>
@@ -1480,10 +1546,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-frontend-deployment-vercelnetlify" class="md-nav__link">
+  <a href="#step-4-frontend-deployment-vercel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Step 4: Frontend Deployment (Vercel/Netlify)
+        💻 Step 4: Frontend Deployment (Vercel)
       
     </span>
   </a>
@@ -1540,106 +1606,129 @@
 
 
 
-<h1 id="production-deployment-guide-schoolpay-pro">🚀 Production Deployment Guide: SchoolPay Pro<a class="headerlink" href="#production-deployment-guide-schoolpay-pro" title="Permanent link">&para;</a></h1>
-<p>This guide outlines the professional workflow for deploying the <strong>SchoolPay Pro</strong> multi-tenant SaaS to a production environment.</p>
+<h1 id="production-deployment-guide-remitpro">🚀 Production Deployment Guide: Remitpro<a class="headerlink" href="#production-deployment-guide-remitpro" title="Permanent link">&para;</a></h1>
+<p>This guide outlines the professional workflow for deploying the <strong>Remitpro</strong> multi-tenant SaaS to a production environment using a Node.js/Express microservices server and a Neon PostgreSQL database.</p>
 <hr />
 <h2 id="prerequisites">📋 Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li>A <strong>Supabase</strong> Account (Pro tier recommended for high-volume transactions).</li>
-<li>A <strong>Monnify</strong> Live Merchant Account (Requires account verification).</li>
-<li><strong>Node.js 20+</strong> and <strong>Supabase CLI</strong> installed locally.</li>
+<li>A <strong>Neon</strong> Account (for PostgreSQL serverless database hosting).</li>
+<li>A <strong>Supabase</strong> Account (for Auth/Identity and Object Storage).</li>
+<li>A <strong>Monnify</strong> Live Merchant Account (for payment processing and split billing).</li>
+<li><strong>Node.js 20+</strong> installed locally.</li>
+<li>A <strong>Render</strong>, <strong>Railway</strong>, or <strong>Heroku</strong> account for backend API server hosting.</li>
 <li>A <strong>Vercel</strong> or <strong>Netlify</strong> account for frontend hosting.</li>
 </ul>
 <hr />
 <h2 id="step-1-infrastructure-provisioning">🏗️ Step 1: Infrastructure Provisioning<a class="headerlink" href="#step-1-infrastructure-provisioning" title="Permanent link">&para;</a></h2>
-<h3 id="1-supabase-project">1. Supabase Project<a class="headerlink" href="#1-supabase-project" title="Permanent link">&para;</a></h3>
+<h3 id="1-neon-database-setup">1. Neon Database Setup<a class="headerlink" href="#1-neon-database-setup" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create a new project in your Supabase Dashboard.</li>
-<li>Note your <code>Project URL</code> and <code>API Keys</code>.</li>
-<li>Enable <strong>PostgreSQL</strong> (default).</li>
+<li>Create a new project in your <strong>Neon Dashboard</strong>.</li>
+<li>Note your <code>DATABASE_URL</code> connection string (ensure it uses pooled connections <code>-pooler</code> for production scaling).</li>
 </ol>
-<h3 id="2-monnify-live-setup">2. Monnify Live Setup<a class="headerlink" href="#2-monnify-live-setup" title="Permanent link">&para;</a></h3>
+<h3 id="2-supabase-project-auth-storage">2. Supabase Project (Auth &amp; Storage)<a class="headerlink" href="#2-supabase-project-auth-storage" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a new project in the Supabase Dashboard.</li>
+<li>Note your <code>Project URL</code>, <code>API Keys</code> (both <code>anon</code> and <code>service_role</code>).</li>
+<li>Enable standard <strong>Supabase Auth</strong> configurations (site URL, SMTP settings).</li>
+<li>Create a bucket named <code>attendance-photos</code> in the Supabase Storage console and set it to public or apply proper RLS.</li>
+</ol>
+<h3 id="3-monnify-live-setup">3. Monnify Live Setup<a class="headerlink" href="#3-monnify-live-setup" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Log in to your Monnify Live Dashboard.</li>
 <li>Obtain your <strong>Merchant Code</strong>, <strong>API Key</strong>, and <strong>Secret Key</strong>.</li>
-<li>Create a <strong>Main Subaccount</strong> for your platform fees and note the <code>subAccountCode</code>.</li>
+<li>Create a <strong>Main Subaccount</strong> for platform fees and note the <code>subAccountCode</code>.</li>
 </ol>
 <hr />
 <h2 id="step-2-database-schema-migration">🗄️ Step 2: Database &amp; Schema Migration<a class="headerlink" href="#step-2-database-schema-migration" title="Permanent link">&para;</a></h2>
-<p>SchoolPay Pro uses <strong>Drizzle ORM</strong> for schema management. Do <strong>not</strong> use the Supabase SQL Editor manually for table creation.</p>
-<h3 id="1-initialize-schema">1. Initialize Schema<a class="headerlink" href="#1-initialize-schema" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Set your production DATABASE_URL in .env</span>
-<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres&quot;</span>
-
-<span class="c1"># Push the schema to the live database</span>
+<p>Remitpro uses <strong>Drizzle ORM</strong> for schema management. Do <strong>not</strong> run SQL tables scripts manually unless executing structural triggers.</p>
+<h3 id="1-run-schema-migration">1. Run Schema Migration<a class="headerlink" href="#1-run-schema-migration" title="Permanent link">&para;</a></h3>
+<p>Set your production <code>DATABASE_URL</code> in your local environment, then push the schema:
+<div class="highlight"><pre><span></span><code><span class="c1"># Push the schema definitions to Neon PostgreSQL</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:push
-</code></pre></div>
+</code></pre></div></p>
 <h3 id="2-apply-security-rules">2. Apply Security &amp; Rules<a class="headerlink" href="#2-apply-security-rules" title="Permanent link">&para;</a></h3>
-<p>You must run the multi-tenant isolation and automation scripts against the production DB.
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. Apply Row Level Security (RLS)</span>
+<p>Apply the Row-Level Security (RLS) policies and triggers:
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Apply multi-tenant security policies (RLS)</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:rls
 
-<span class="c1"># 2. Setup Triggers (e.g., auto-profile creation)</span>
+<span class="c1"># 2. Setup system triggers (e.g. auth sync profiles and default sessions)</span>
 npm<span class="w"> </span>run<span class="w"> </span>db:triggers
 </code></pre></div></p>
+<h3 id="3-initial-seeding-optional">3. Initial Seeding (Optional)<a class="headerlink" href="#3-initial-seeding-optional" title="Permanent link">&para;</a></h3>
+<p>If provisioning default templates, seed data:
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>db:seed
+</code></pre></div></p>
 <hr />
-<h2 id="step-3-edge-functions-deployment">⚡ Step 3: Edge Functions Deployment<a class="headerlink" href="#step-3-edge-functions-deployment" title="Permanent link">&para;</a></h2>
-<p>These functions contain the sensitive Monnify logic and must be deployed to Supabase's global edge network.</p>
-<h3 id="1-set-production-secrets">1. Set Production Secrets<a class="headerlink" href="#1-set-production-secrets" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>supabase<span class="w"> </span>login
-supabase<span class="w"> </span>link<span class="w"> </span>--project-ref<span class="w"> </span><span class="o">[</span>YOUR_PROJECT_ID<span class="o">]</span>
-
-<span class="c1"># Set API Secrets</span>
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">MONNIFY_API_KEY</span><span class="o">=</span>...
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">MONNIFY_SECRET_KEY</span><span class="o">=</span>...
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">MONNIFY_BASE_URL</span><span class="o">=</span>https://api.monnify.com
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">PLATFORM_SUBACCOUNT_CODE</span><span class="o">=</span>...<span class="w"> </span><span class="c1"># YOUR subaccount for the N200 fees</span>
-supabase<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">RESEND_API_KEY</span><span class="o">=</span>re_...<span class="w"> </span><span class="c1"># Your Resend API Key for emails</span>
+<h2 id="step-3-express-backend-deployment">⚡ Step 3: Express Backend Deployment<a class="headerlink" href="#step-3-express-backend-deployment" title="Permanent link">&para;</a></h2>
+<p>The backend server is a Node.js Express application located in <code>server/</code>. You can deploy this to Render, Railway, Fly.io, or any Node-compatible container service.</p>
+<h3 id="1-configure-server-environment-variables">1. Configure Server Environment Variables<a class="headerlink" href="#1-configure-server-environment-variables" title="Permanent link">&para;</a></h3>
+<p>On your backend host dashboard (e.g., Render Web Service or Fly.io secrets), set the following environment variables:
+- <code>DATABASE_URL</code>: Your production Neon PostgreSQL connection string.
+- <code>SUPABASE_URL</code>: Your production Supabase URL.
+- <code>SUPABASE_SERVICE_ROLE_KEY</code>: Your production Supabase service role API key.
+- <code>MONNIFY_API_KEY</code>: Your production Monnify API Key.
+- <code>MONNIFY_SECRET_KEY</code>: Your production Monnify Secret Key.
+- <code>MONNIFY_BASE_URL</code>: <code>https://api.monnify.com</code> (Live URL)
+- <code>PLATFORM_SUBACCOUNT_CODE</code>: Your subaccount code for collecting the ₦200 platform fee.
+- <code>RESEND_API_KEY</code>: Your Resend API key (for transaction receipts/invites).
+- <code>TERMII_API_KEY</code>: Your Termii API key (for SMS broadcasts).
+- <code>PORT</code>: <code>5000</code> (or leave default if the hosting provider assigns it automatically).</p>
+<h3 id="2-backend-build-settings">2. Backend Build Settings<a class="headerlink" href="#2-backend-build-settings" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Build Command</strong>: <code>npm install</code> (run from the root)</li>
+<li><strong>Start Command</strong>: <code>npx tsx server/src/index.ts</code> (or build to JS and run <code>node server/dist/index.js</code> for production scale).</li>
+</ul>
+<h3 id="3-deploying-specifically-to-flyio">3. Deploying specifically to Fly.io<a class="headerlink" href="#3-deploying-specifically-to-flyio" title="Permanent link">&para;</a></h3>
+<p>We configure Fly.io using the <code>Dockerfile</code>, <code>.dockerignore</code>, and <code>fly.toml</code> files at the root of the project:
+1. Log in to the Fly CLI:
+   <div class="highlight"><pre><span></span><code>fly<span class="w"> </span>auth<span class="w"> </span>login
 </code></pre></div>
-<h3 id="2-deploy-logic">2. Deploy Logic<a class="headerlink" href="#2-deploy-logic" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>onboard-school
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>generate-virtual-account
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>monnify-webhook
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>invite-user
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>promote-students
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>verify-payment
-supabase<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>send-email
+2. Create the application:
+   <div class="highlight"><pre><span></span><code>fly<span class="w"> </span>apps<span class="w"> </span>create<span class="w"> </span>remitpro-backend<span class="w"> </span>--org<span class="w"> </span>remitpro-ltd
 </code></pre></div>
+3. Set your production secrets securely:
+   <div class="highlight"><pre><span></span><code>fly<span class="w"> </span>secrets<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="nv">VITE_SUPABASE_URL</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="nv">MONNIFY_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="nv">MONNIFY_SECRET_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="nv">MONNIFY_BASE_URL</span><span class="o">=</span><span class="s2">&quot;https://api.monnify.com&quot;</span>
+</code></pre></div>
+4. Deploy the application:
+   <div class="highlight"><pre><span></span><code>fly<span class="w"> </span>deploy<span class="w"> </span>--remote-only
+</code></pre></div></p>
 <hr />
-<h2 id="step-4-frontend-deployment-vercelnetlify">💻 Step 4: Frontend Deployment (Vercel/Netlify)<a class="headerlink" href="#step-4-frontend-deployment-vercelnetlify" title="Permanent link">&para;</a></h2>
+<h2 id="step-4-frontend-deployment-vercel">💻 Step 4: Frontend Deployment (Vercel)<a class="headerlink" href="#step-4-frontend-deployment-vercel" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Connect your Github repository to Vercel.</li>
-<li>Configure the <strong>Build Settings</strong>:</li>
+<li>Connect your GitHub repository to Vercel.</li>
+<li>Configure the <strong>Build &amp; Development Settings</strong>:</li>
 <li><strong>Build Command</strong>: <code>npm run build</code></li>
 <li><strong>Output Directory</strong>: <code>dist</code></li>
-<li>Add <strong>Environment Variables</strong>:</li>
+<li><strong>Framework Preset</strong>: <code>Vite</code></li>
+<li>Add the following <strong>Environment Variables</strong> in Vercel:</li>
 <li><code>VITE_SUPABASE_URL</code>: Your Production Supabase URL.</li>
-<li><code>VITE_SUPABASE_ANON_KEY</code>: Your Production Anon Key.</li>
+<li><code>VITE_SUPABASE_ANON_KEY</code>: Your Production Supabase Anon Key.</li>
+<li><code>VITE_MICROSERVICES_URL</code>: The URL of your deployed Express backend server on Fly.io: <code>https://remitpro-backend.fly.dev/api</code>.</li>
+<li>Vercel automatically honors the <code>vercel.json</code> file in the root directory to handle SPA routing redirects correctly.</li>
 </ol>
 <hr />
 <h2 id="step-5-platform-owner-initialization">👮 Step 5: Platform Owner Initialization<a class="headerlink" href="#step-5-platform-owner-initialization" title="Permanent link">&para;</a></h2>
-<p>Once the frontend is live:
+<p>Once the frontend and backend are live:
 1. Navigate to your live site and <strong>Sign Up</strong> with your owner email.
-2. Go to your local terminal and run the promotion script against the production DB:
-   <div class="highlight"><pre><span></span><code><span class="c1"># Update OWNER_EMAIL in .env to match your signup</span>
+2. Go to your local terminal and run the admin elevation script against the production DB:
+   <div class="highlight"><pre><span></span><code><span class="c1"># Update OWNER_EMAIL in .env to match your signup email</span>
 npx<span class="w"> </span>tsx<span class="w"> </span>src/db/promote_admin.ts
 </code></pre></div>
-3. Your account is now a <strong>Super-Admin</strong>.</p>
+3. Your account is now elevated to a platform-wide <strong>Super-Admin</strong>.</p>
 <hr />
 <h2 id="step-6-post-deployment-checklist">🛡️ Step 6: Post-Deployment Checklist<a class="headerlink" href="#step-6-post-deployment-checklist" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Webhook Configuration</strong>: In the <strong>Monnify Dashboard</strong>, set your Webhook URL to:
-   <code>https://[YOUR_PROJ_ID].supabase.co/functions/v1/monnify-webhook</code></li>
-<li><strong>Bank List Sync</strong>: Ensure your onboarding UI is fetching the latest bank codes from Monnify's API.</li>
-<li><strong>CORS Security</strong>: Ensure your Supabase project's <code>Site URL</code> and <code>Redirect URLs</code> match your production domain.</li>
-<li><strong>SSL</strong>: Ensure your frontend is served exclusively over HTTPS.</li>
+<li><strong>Webhook Configuration</strong>: In the <strong>Monnify Dashboard</strong>, set your live Webhook URL to point to the Express backend endpoint:
+   <code>https://remitpro-backend.fly.dev/api/monnify-webhook</code></li>
+<li><strong>CORS Security</strong>: Ensure your Supabase project's <code>Site URL</code> and <code>Redirect URLs</code> match your production frontend domain.</li>
+<li><strong>SSL</strong>: Ensure your frontend and Express backend are served exclusively over HTTPS.</li>
 </ol>
 <hr />
 <h2 id="monitoring-maintenance">📈 Monitoring &amp; Maintenance<a class="headerlink" href="#monitoring-maintenance" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>DB Integrity</strong>: Periodically check <code>src/services/FeeService.ts</code> logs for term initialization errors.</li>
-<li><strong>Edge Function Logs</strong>: Use <code>supabase functions logs [name] --follow</code> for real-time transaction debugging.</li>
-<li><strong>Backups</strong>: Enable Supabase's automated PITR (Point-in-Time Recovery) for local storage/DB.</li>
+<li><strong>System Logs</strong>: Inspect the logs of your Express backend server on Fly.io (e.g. using <code>fly logs --app remitpro-backend</code> in the CLI) for payment hook delivery and user invitation statuses.</li>
+<li><strong>Neon DB Health</strong>: Use the Neon console to monitor active connections, auto-scaling CPU usage, and slow query execution plans.</li>
+<li><strong>Database Backups</strong>: Configure automatic point-in-time recovery (PITR) directly in Neon console.</li>
 </ul>
 <hr />
 <p><em>For critical infrastructure support, contact the Remitpro DevOps team.</em></p>

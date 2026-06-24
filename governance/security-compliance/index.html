@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/governance/security-compliance/">
+        <link rel="canonical" href="https://docs.remitpro.io/governance/security-compliance/">
       
       
         <link rel="prev" href="../../developer/testing/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Security & Compliance - SchoolPay Pro 🎓</title>
+        <title>Security & Compliance - Remitpro 🎓</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1497,7 +1497,7 @@
 
 
 <h1 id="security-compliance-framework">Security &amp; Compliance Framework 🛡️<a class="headerlink" href="#security-compliance-framework" title="Permanent link">&para;</a></h1>
-<p>SchoolPay Pro is engineered with a "Security-First" philosophy, ensuring that institutional data and financial transactions are protected at every layer.</p>
+<p>Remitpro is engineered with a "Security-First" philosophy, ensuring that institutional data and financial transactions are protected at every layer.</p>
 <hr />
 <h2 id="1-data-isolation-privacy">🔐 1. Data Isolation &amp; Privacy<a class="headerlink" href="#1-data-isolation-privacy" title="Permanent link">&para;</a></h2>
 <h3 id="row-level-security-rls">Row Level Security (RLS)<a class="headerlink" href="#row-level-security-rls" title="Permanent link">&para;</a></h3>
@@ -1513,7 +1513,7 @@
 <hr />
 <h2 id="2-fintech-security-compliance">💰 2. Fintech Security &amp; Compliance<a class="headerlink" href="#2-fintech-security-compliance" title="Permanent link">&para;</a></h2>
 <h3 id="monnify-integration">Monnify Integration<a class="headerlink" href="#monnify-integration" title="Permanent link">&para;</a></h3>
-<p>SchoolPay Pro does not store raw credit card data or bank login credentials. 
+<p>Remitpro does not store raw credit card data or bank login credentials. 
 - <strong>Sub-account Privacy</strong>: Each school's financial environment is isolated within Monnify's PCI-DSS Level 1 compliant infrastructure.
 - <strong>Webhook Authentication</strong>: Every incoming payment notification is validated using a <strong>SHA-512 HMAC Signature</strong>. Notifications that do not pass the signature check are instantly rejected.</p>
 <h3 id="biometric-geofence-security">Biometric &amp; Geofence Security<a class="headerlink" href="#biometric-geofence-security" title="Permanent link">&para;</a></h3>
@@ -1544,11 +1544,12 @@
 <ul>
 <li><strong>Secure Offline Storage</strong>: Data cached for offline attendance is stored in browser-encrypted zones.</li>
 <li><strong>Automatic Sanitization</strong>: Cached data is automatically flushed once a background sync to the primary server is successful.</li>
+<li><strong>Fintech Robustness</strong>: Backend microservices (like VA generation) implement administrative/service-account failover. If a user session is transiently invalid, the system securely completes critical financial provisioning using hardened backend credentials to prevent workflow interruption.</li>
 <li><strong>Strict Validation</strong>: All incoming data, whether from an offline sync or direct API, is validated against strict <strong>Zod schemas</strong> to prevent payload injection or schema drift.</li>
 </ul>
 <hr />
 <h2 id="4-compliance-standards">🏛️ 4. Compliance Standards<a class="headerlink" href="#4-compliance-standards" title="Permanent link">&para;</a></h2>
-<p>SchoolPay Pro is designed to help your institution meet local and global regulatory requirements:
+<p>Remitpro is designed to help your institution meet local and global regulatory requirements:
 - <strong>NDPR</strong>: Nigerian Data Protection Regulation compliant.
 - <strong>PCI-DSS</strong>: Leveraging Monnify's certified payment gateway.
 - <strong>KYC</strong>: Automated Business Verification (BVN/CAC) via the onboarding flow.</p>

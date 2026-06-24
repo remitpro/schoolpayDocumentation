@@ -12,7 +12,7 @@
         <meta name="author" content="Remitpro">
       
       
-        <link rel="canonical" href="https://docs.schoolpaypro.ng/developer/testing/">
+        <link rel="canonical" href="https://docs.remitpro.io/developer/testing/">
       
       
         <link rel="prev" href="../deployment/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Testing - SchoolPay Pro 🎓</title>
+        <title>Testing - Remitpro 🎓</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#manual-testing-qa-guide-schoolpay-pro" class="md-skip">
+        <a href="#manual-testing-qa-guide-remitpro" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-header__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-header__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SchoolPay Pro 🎓
+            Remitpro 🎓
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -370,12 +370,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SchoolPay Pro 🎓" class="md-nav__button md-logo" aria-label="SchoolPay Pro 🎓" data-md-component="logo">
+    <a href="../.." title="Remitpro 🎓" class="md-nav__button md-logo" aria-label="Remitpro 🎓" data-md-component="logo">
       
   <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
-    SchoolPay Pro 🎓
+    Remitpro 🎓
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1384,14 +1384,16 @@
 
 
 
-<h1 id="manual-testing-qa-guide-schoolpay-pro">Manual Testing &amp; QA Guide: SchoolPay Pro 🧪<a class="headerlink" href="#manual-testing-qa-guide-schoolpay-pro" title="Permanent link">&para;</a></h1>
+<h1 id="manual-testing-qa-guide-remitpro">Manual Testing &amp; QA Guide: Remitpro 🧪<a class="headerlink" href="#manual-testing-qa-guide-remitpro" title="Permanent link">&para;</a></h1>
 <p>This guide provides a comprehensive framework for manual Quality Assurance (QA) to ensure the platform meets enterprise financial standards and multi-tenant security requirements.</p>
 <hr />
 <h2 id="1-testing-prerequisites">📋 1. Testing Prerequisites<a class="headerlink" href="#1-testing-prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before starting, ensure you have:
-- Access to a <strong>Supabase</strong> development project.
+- Access to a <strong>Neon</strong> development database.
+- Access to a <strong>Supabase</strong> project (for Auth/Storage).
 - A <strong>Monnify Sandbox</strong> account (for API testing).
-- <code>Supabase CLI</code> installed and edge functions deployed locally (<code>supabase start</code>).
+- Local Express backend running via <code>npm run server:dev</code> (on port 5000).
+- Local React development server running via <code>npm run dev</code>.
 - Clean database state (no existing schools/students).</p>
 <hr />
 <h2 id="2-test-scenarios-example-tasks">🛠️ 2. Test Scenarios &amp; Example Tasks<a class="headerlink" href="#2-test-scenarios-example-tasks" title="Permanent link">&para;</a></h2>
@@ -1482,7 +1484,7 @@
 <tr>
 <td style="text-align: left;"><strong>C2</strong></td>
 <td style="text-align: left;">Mock a Payment: Use the Monnify Sandbox to simulate a transfer.</td>
-<td style="text-align: left;">Webhook is triggered; Transaction entry is created in Supabase.</td>
+<td style="text-align: left;">Webhook is triggered; Transaction entry is created in Neon DB.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>C3</strong></td>

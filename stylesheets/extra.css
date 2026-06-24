@@ -1,0 +1,219 @@
+/* ============================================================
+   Remitpro Docs — Custom Enterprise Stylesheet
+   ============================================================ */
+
+/* Brand font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --md-code-font: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Brand palette */
+  --rp-purple: hsl(263, 70%, 50%);
+  --rp-indigo: hsl(243, 75%, 59%);
+  --rp-gold: hsl(43, 96%, 56%);
+  --rp-surface: hsl(240, 10%, 98%);
+}
+
+/* ── Hero banner on home page ── */
+.md-typeset .hero-banner {
+  background: linear-gradient(135deg, hsl(263, 70%, 12%) 0%, hsl(243, 60%, 18%) 60%, hsl(220, 50%, 22%) 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.md-typeset .hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, hsla(263, 70%, 60%, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.md-typeset .hero-banner h1 {
+  color: #fff !important;
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+  border: none;
+}
+
+.md-typeset .hero-banner p {
+  color: hsla(0, 0%, 100%, 0.75);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.md-typeset .hero-banner .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: hsla(255, 100%, 100%, 0.12);
+  border: 1px solid hsla(255, 100%, 100%, 0.2);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* ── Quick-link cards ── */
+.md-typeset .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.md-typeset .card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none !important;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.md-typeset .card:hover {
+  border-color: var(--md-primary-fg-color);
+  box-shadow: 0 4px 20px hsla(263, 70%, 50%, 0.15);
+  transform: translateY(-2px);
+}
+
+.md-typeset .card .card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.md-typeset .card .card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .card .card-desc {
+  font-size: 0.85rem;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.5;
+}
+
+/* ── Stat badges ── */
+.md-typeset .stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.md-typeset .stat {
+  background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  min-width: 130px;
+  text-align: center;
+}
+
+.md-typeset .stat .stat-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.md-typeset .stat .stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Onboarding step cards ── */
+.md-typeset .step-card {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+  align-items: flex-start;
+}
+
+.md-typeset .step-card .step-num {
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* ── Version chip in header ── */
+.md-header__topic .version-chip {
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ── Code block improvements ── */
+.md-typeset code {
+  font-family: var(--md-code-font);
+  font-size: 0.875em;
+}
+
+.md-typeset pre > code {
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+/* ── Admonition colour tweaks ── */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--rp-indigo);
+}
+
+/* ── Table improvements ── */
+.md-typeset table:not([class]) {
+  font-size: 0.875rem;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Dark mode adjustments ── */
+[data-md-color-scheme="slate"] .md-typeset .card {
+  background: hsla(240, 15%, 12%, 1);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero-banner {
+  background: linear-gradient(135deg, hsl(263, 60%, 8%) 0%, hsl(243, 50%, 12%) 100%);
+}

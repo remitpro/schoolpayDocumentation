@@ -2,86 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.remitpro.io/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/contact/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/api-reference/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/architecture/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/changelog/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/codebase-map/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/contributing/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/database-schema/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/deployment/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/onboarding/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/technical-manual/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/testing/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/developer/troubleshooting/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/governance/security-compliance/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/governance/sla/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/planning/roadmap/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/planning/workplan/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/product/user-journey/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.remitpro.io/product/wireframes/</loc>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/user-guides/parent-portal/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/user-guides/school-admin/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
     <url>
          <loc>https://docs.remitpro.io/user-guides/super-admin/</loc>
-         <lastmod>2026-06-24</lastmod>
+         <lastmod>2026-06-25</lastmod>
     </url>
 </urlset>
